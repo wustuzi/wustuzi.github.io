@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>Markdown基本语法</title>
+      <link href="/2020/08/22/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/"/>
+      <url>/2020/08/22/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</url>
+      
+        <content type="html"><![CDATA[<p>在我们写博客的过程中，熟练掌握markdown语法，常常会使得自己的办事效率有事半功倍的效果，所以掌握markdown语法，是我们写博客的第一步，也是最基础重要的一步。</p><h1 id="Markdown快速入门（typora）"><a href="#Markdown快速入门（typora）" class="headerlink" title="Markdown快速入门（typora）"></a>Markdown快速入门（typora）</h1><h2 id="1-代码块："><a href="#1-代码块：" class="headerlink" title="1.代码块："></a>1.代码块：</h2><pre><code class="C++">// 用``` + 自己的语言再回车即可// C++ 代码块 ： ```C++ 以此类推</code></pre><h2 id="2-标题"><a href="#2-标题" class="headerlink" title="2.标题"></a>2.标题</h2><pre><code class="C++"># 标题名称## 标题名称### 标题名称#### 标题名称##### 标题名称###### 标题名称从上到下 从一级标题到六级标题 从大到小</code></pre><h1 id="标题名称"><a href="#标题名称" class="headerlink" title="标题名称"></a>标题名称</h1><h2 id="标题名称-1"><a href="#标题名称-1" class="headerlink" title="标题名称"></a>标题名称</h2><h3 id="标题名称-2"><a href="#标题名称-2" class="headerlink" title="标题名称"></a>标题名称</h3><h4 id="标题名称-3"><a href="#标题名称-3" class="headerlink" title="标题名称"></a>标题名称</h4><h5 id="标题名称-4"><a href="#标题名称-4" class="headerlink" title="标题名称"></a>标题名称</h5><h6 id="标题名称-5"><a href="#标题名称-5" class="headerlink" title="标题名称"></a>标题名称</h6><h2 id="3-字体"><a href="#3-字体" class="headerlink" title="3.字体"></a>3.字体</h2><pre><code class="C++">// 加粗**加粗语言**// 删除线~~删除线内容~~// 斜体*斜体内容*</code></pre><p><strong>加粗语言</strong></p><p><del>删除线内容</del></p><p><em>斜体内容</em></p><h2 id="4-引用"><a href="#4-引用" class="headerlink" title="4.引用"></a>4.引用</h2><pre><code class="C++">// 引用语法&gt;作者：xxx&gt;&gt;作者：xxx&gt;&gt;&gt;作者：xxx</code></pre><blockquote><p>作者：xxx</p><blockquote><p>作者：xxx</p><blockquote><p>作者：xxx</p></blockquote></blockquote></blockquote><h2 id="5-分割线"><a href="#5-分割线" class="headerlink" title="5.分割线"></a>5.分割线</h2><pre><code class="C++">//分割线---//分割线2***</code></pre><hr><hr><h2 id="6-图片插入"><a href="#6-图片插入" class="headerlink" title="6.图片插入"></a>6.图片插入</h2><pre><code class="C++">//在线图片/本地图片！[图片的名字](地址) ----本地即为文件地址，在线即为右键图片链接（有网络)</code></pre><h2 id="7-超链接"><a href="#7-超链接" class="headerlink" title="7. 超链接"></a>7. 超链接</h2><pre><code class="C++">//超链接语法[名字](具体地址)</code></pre><p><a href="https://wustuzi.github.io/">我的github</a></p><h2 id="8-列表"><a href="#8-列表" class="headerlink" title="8.列表"></a>8.列表</h2><pre><code class="C++">//无序列表- 目录一- 目录二//有序表格1 + 。 + 空格1.xxx2.xxx</code></pre><ul><li>目录一</li><li>目录二</li></ul><p>​    1.xxx</p><p>​    2.xxx</p><h2 id="9-表格"><a href="#9-表格" class="headerlink" title="9. 表格"></a>9. 表格</h2><p>右键插入即可</p><table><thead><tr><th>x</th><th>y</th><th>z</th></tr></thead><tbody><tr><td>1</td><td>2</td><td>3</td></tr></tbody></table><pre><code class="C++">按住ctrl + / 查看源码</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Hello World</title>
       <link href="/2020/08/21/hello-world/"/>
       <url>/2020/08/21/hello-world/</url>
