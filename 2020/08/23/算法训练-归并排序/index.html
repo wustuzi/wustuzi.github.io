@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="404, KQ的博客">
+    <meta name="keywords" content="算法训练  归并排序, KQ的博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>404 | KQ的博客</title>
+    <title>算法训练  归并排序 | KQ的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -308,12 +308,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">404</h1>
+                    <h1 class="description center-align post-title">算法训练  归并排序</h1>
                 </div>
             </div>
         </div>
@@ -428,12 +428,29 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/C/">
+                                <span class="chip bg-color">C++</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83/">
+                                <span class="chip bg-color">算法训练</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                基础算法学习
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -442,7 +459,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2018-09-30
+                    2020-08-23
                 </div>
                 
 
@@ -451,14 +468,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    906
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    4 分
                 </div>
                 
 
@@ -468,7 +485,143 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <p>在学习了快排和归并排序的模板之后，快排在我们的题目中基本是不会出现的，出现的一般都是归并排序，在这里我记录几个训练过觉得比较有意义的归并排序的题目（题目均源自：洛谷）</p>
+<hr>
+<h1 id="归并排序题目"><a href="#归并排序题目" class="headerlink" title="归并排序题目"></a>归并排序题目</h1><h2 id="一、最接近神的人"><a href="#一、最接近神的人" class="headerlink" title="一、最接近神的人"></a>一、最接近神的人</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1774">原题链接</a></p>
+<p>题解：</p>
+<pre><code class="C++">#include &lt;iostream&gt;
+
+using namespace std;
+
+const int N = 500050;
+int q[N], p[N];
+long long sum;
+void sort(int q[], int l, int r)
+&amp;#123;
+    if(l &gt;= r)  return;
+    int mid = (l + r) / 2;
+    sort(q, l, mid), sort(q, mid + 1, r);
+    int i = l, j = mid + 1, k = 0;
+    while(i &lt;= mid &amp;&amp; j &lt;= r)
+    &amp;#123;
+        if(q[i] &lt;= q[j])
+        &amp;#123;
+            p[k ++] = q[i ++];
+        &amp;#125;
+        else
+        &amp;#123;
+            p[k ++] = q[j ++];
+            sum += mid - i + 1;//核心
+        &amp;#125;
+    &amp;#125;
+    while(i &lt;= mid) p[k ++] = q[i ++];
+    while(j &lt;= r)   p[k ++] = q[j ++];
+
+    for(i = l, j = 0; i &lt;= r; i ++, j ++)   q[i] = p[j];
+&amp;#125;
+int main()
+&amp;#123;
+    int n;
+    cin &gt;&gt; n;
+    for(int i = 0; i &lt; n; i ++) cin &gt;&gt; q[i];
+    sort(q, 0, n - 1);
+    cout &lt;&lt; sum;
+    return 0;
+&amp;#125;</code></pre>
+<p>本题在归并排序的条件之下，进行了一些更为基本的调整，在进行大小顺序相反的交换时，会进行操作sum += mid - i + 1，这是本题的核心语句，仅当大小顺序相反时进行语句。</p>
+<hr>
+<h2 id="二、瑞士轮"><a href="#二、瑞士轮" class="headerlink" title="二、瑞士轮"></a>二、瑞士轮</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1309">原题链接</a></p>
+<p>题解：</p>
+<pre><code class="C++">#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#include &lt;stdio.h&gt;
+using namespace std;
+
+const int N = 200100;
+int p[N], q[N], a[N];
+//p存放能力值 q存放分数 a存放排名
+int w[N], l[N];
+//w数组存放赢的人的序号 l数组存放输的人的序号
+
+bool op(int x, int y)
+&amp;#123;
+    if(q[x] == q[y])    return x &lt; y;
+    return q[x] &gt; q[y];
+&amp;#125;
+
+int main()
+&amp;#123;
+    int n, r, t;
+    //2*n是总选手数目 r是比赛轮次 q是关注的排名
+    cin &gt;&gt; n &gt;&gt; r &gt;&gt; t;
+    n *= 2;
+    for(int i = 1; i &lt;= n; i ++)    
+    &amp;#123;
+        a[i] = i;
+    &amp;#125;
+    for(int i = 1; i &lt;= n; i ++)    
+    &amp;#123;
+        cin &gt;&gt; q[i];
+    &amp;#125;
+    for(int i = 1; i &lt;= n; i ++)    
+    &amp;#123;
+        cin &gt;&gt; p[i] ;
+    &amp;#125;
+
+    sort(a + 1, a + n + 1, op);//先将分数进行排列
+    //a[1]-a[n] 的数值按照op进行排序
+
+    for(int i = 1; i &lt;= r; i ++)
+    &amp;#123;
+        int b = 0;
+        for(int j = 1; j &lt;= n; j += 2)
+        &amp;#123;
+            if(p[a[j]] &gt;= p[a[j + 1]])//根据能力值来判断胜负
+            &amp;#123;
+                q[a[j]] ++;
+                w[++ b] = a[j];
+                l[b] = a[j + 1];//记录胜者组记号和相对应的排名
+            &amp;#125;
+            else
+            &amp;#123;
+                q[a[j + 1]] ++;
+                w[++ b] = a[j + 1];
+                l[b] = a[j];
+            &amp;#125;
+        &amp;#125;
+        int x = 1, y = 1, k = 1;
+        while(x &lt;= b &amp;&amp; y &lt;= b)
+        &amp;#123;
+            if(op(w[x], l[y]))
+            &amp;#123;
+                a[k ++] = w[x ++];
+            &amp;#125;
+            else
+            &amp;#123;
+                a[k ++] = l[y ++];
+            &amp;#125;
+        &amp;#125;
+
+        while (x &lt;= b)
+        &amp;#123;
+            a[k ++] = w[x ++];
+        &amp;#125;
+        while (y &lt;= b)   
+        &amp;#123;
+            a[k ++] = l[y ++];
+        &amp;#125;
+    &amp;#125;
+    cout &lt;&lt; a[t];
+    return 0;
+&amp;#125;</code></pre>
+<p>这个题目需要开的数据比较多，但是题目里面的主体内容还是归并排序。只是在归并排序里面添加了两组，分为胜者组和败者组。</p>
+<p>每组比赛的胜者：赛前，总分是按降序排的；获胜后都得1分，仍是降序；</p>
+<p>每组比赛的负者：赛前，总分是按降序排的；不得分，仍是降序。</p>
+<p>先按初始分数排序，然后按分数高低两人一组比赛；</p>
+<p>胜者入队A，负者入队B。这样A、B自身仍是有序的；</p>
+<p>只需进行合并操作即可，合并操作的复杂度是O(n),而如果用快排其复杂度为O(nlogn)。</p>
+<hr>
+
             </div>
             <hr/>
 
@@ -493,7 +646,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://wustuzi.github.io/404.html">http://wustuzi.github.io/404.html</a>
+                    <a href="http://wustuzi.github.io/2020/08/23/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83-%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/">http://wustuzi.github.io/2020/08/23/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83-%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -530,7 +683,15 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/C/">
+                                    <span class="chip bg-color">C++</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83/">
+                                    <span class="chip bg-color">算法训练</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -699,7 +860,7 @@
         repo: 'wustuzi.github.io',
         owner: 'wustuzi',
         admin: "wustuzi",
-        id: '2018-09-30T17-25-30',
+        id: '2020-08-23T20-46-03',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -728,34 +889,54 @@
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/404.html">
+                <a href="/2020/08/23/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83-%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="404">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="算法训练  归并排序">
                         
-                        <span class="card-title">404</span>
+                        <span class="card-title">算法训练  归并排序</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            在学习了快排和归并排序的模板之后，快排在我们的题目中基本是不会出现的，出现的一般都是归并排序，在这里我记录几个训练过觉得比较有意义的归并排序的题目（题目均源自：洛谷）
+
+归并排序题目一、最接近神的人原题链接
+题解：
+#include &lt
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2018-09-30
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-23
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            KQ
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    基础算法学习
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/C/">
+                        <span class="chip bg-color">C++</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83/">
+                        <span class="chip bg-color">算法训练</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -763,37 +944,54 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/404.html">
+                <a href="/2020/08/23/%E7%AE%97%E6%B3%95-%E6%8E%92%E5%BA%8F/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="404">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="算法  排序">
                         
-                        <span class="card-title">404</span>
+                        <span class="card-title">算法  排序</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            虽然在C++里面有他自己所对应的sort函数，可以非常方便的来进行数组的排序，但是可以手写一个排序也是我们所必须要掌握的，这里介绍快速排序和归并排序两种排序
+排序下面我们介绍两种排序方式
+一、快速排序#include &lt;iostrea
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2018-09-30
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-23
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            KQ
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    基础算法学习
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/">
+                        <span class="chip bg-color">基础算法</span>
+                    </a>
+                    
+                    <a href="/tags/C/">
+                        <span class="chip bg-color">C++</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
