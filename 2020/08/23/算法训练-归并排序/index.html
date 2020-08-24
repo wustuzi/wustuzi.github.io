@@ -468,7 +468,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    906
+                    939
                 </div>
                 
 
@@ -489,131 +489,135 @@
 <hr>
 <h1 id="归并排序题目"><a href="#归并排序题目" class="headerlink" title="归并排序题目"></a>归并排序题目</h1><h2 id="一、最接近神的人"><a href="#一、最接近神的人" class="headerlink" title="一、最接近神的人"></a>一、最接近神的人</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1774">原题链接</a></p>
 <p>题解：</p>
-<pre><code class="C++">#include &lt;iostream&gt;
+<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;iostream&gt;
 
 using namespace std;
 
-const int N = 500050;
+const int N &#x3D; 500050;
 int q[N], p[N];
 long long sum;
 void sort(int q[], int l, int r)
-&amp;#123;
-    if(l &gt;= r)  return;
-    int mid = (l + r) / 2;
+&#123;
+    if(l &gt;&#x3D; r)  return;
+    int mid &#x3D; (l + r) &#x2F; 2;
     sort(q, l, mid), sort(q, mid + 1, r);
-    int i = l, j = mid + 1, k = 0;
-    while(i &lt;= mid &amp;&amp; j &lt;= r)
-    &amp;#123;
-        if(q[i] &lt;= q[j])
-        &amp;#123;
-            p[k ++] = q[i ++];
-        &amp;#125;
+    int i &#x3D; l, j &#x3D; mid + 1, k &#x3D; 0;
+    while(i &lt;&#x3D; mid &amp;&amp; j &lt;&#x3D; r)
+    &#123;
+        if(q[i] &lt;&#x3D; q[j])
+        &#123;
+            p[k ++] &#x3D; q[i ++];
+        &#125;
         else
-        &amp;#123;
-            p[k ++] = q[j ++];
-            sum += mid - i + 1;//核心
-        &amp;#125;
-    &amp;#125;
-    while(i &lt;= mid) p[k ++] = q[i ++];
-    while(j &lt;= r)   p[k ++] = q[j ++];
+        &#123;
+            p[k ++] &#x3D; q[j ++];
+            sum +&#x3D; mid - i + 1;&#x2F;&#x2F;核心
+        &#125;
+    &#125;
+    while(i &lt;&#x3D; mid) p[k ++] &#x3D; q[i ++];
+    while(j &lt;&#x3D; r)   p[k ++] &#x3D; q[j ++];
 
-    for(i = l, j = 0; i &lt;= r; i ++, j ++)   q[i] = p[j];
-&amp;#125;
+    for(i &#x3D; l, j &#x3D; 0; i &lt;&#x3D; r; i ++, j ++)   q[i] &#x3D; p[j];
+&#125;
 int main()
-&amp;#123;
+&#123;
     int n;
     cin &gt;&gt; n;
-    for(int i = 0; i &lt; n; i ++) cin &gt;&gt; q[i];
+    for(int i &#x3D; 0; i &lt; n; i ++) cin &gt;&gt; q[i];
     sort(q, 0, n - 1);
     cout &lt;&lt; sum;
     return 0;
-&amp;#125;</code></pre>
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 <p>本题在归并排序的条件之下，进行了一些更为基本的调整，在进行大小顺序相反的交换时，会进行操作sum += mid - i + 1，这是本题的核心语句，仅当大小顺序相反时进行语句。</p>
 <hr>
 <h2 id="二、瑞士轮"><a href="#二、瑞士轮" class="headerlink" title="二、瑞士轮"></a>二、瑞士轮</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1309">原题链接</a></p>
 <p>题解：</p>
-<pre><code class="C++">#include &lt;iostream&gt;
+<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;iostream&gt;
 #include &lt;algorithm&gt;
 #include &lt;stdio.h&gt;
 using namespace std;
 
-const int N = 200100;
+const int N &#x3D; 200100;
 int p[N], q[N], a[N];
-//p存放能力值 q存放分数 a存放排名
+&#x2F;&#x2F;p存放能力值 q存放分数 a存放排名
 int w[N], l[N];
-//w数组存放赢的人的序号 l数组存放输的人的序号
+&#x2F;&#x2F;w数组存放赢的人的序号 l数组存放输的人的序号
 
 bool op(int x, int y)
-&amp;#123;
-    if(q[x] == q[y])    return x &lt; y;
+&#123;
+    if(q[x] &#x3D;&#x3D; q[y])    return x &lt; y;
     return q[x] &gt; q[y];
-&amp;#125;
+&#125;
 
 int main()
-&amp;#123;
+&#123;
     int n, r, t;
-    //2*n是总选手数目 r是比赛轮次 q是关注的排名
+    &#x2F;&#x2F;2*n是总选手数目 r是比赛轮次 q是关注的排名
     cin &gt;&gt; n &gt;&gt; r &gt;&gt; t;
-    n *= 2;
-    for(int i = 1; i &lt;= n; i ++)    
-    &amp;#123;
-        a[i] = i;
-    &amp;#125;
-    for(int i = 1; i &lt;= n; i ++)    
-    &amp;#123;
+    n *&#x3D; 2;
+    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++)    
+    &#123;
+        a[i] &#x3D; i;
+    &#125;
+    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++)    
+    &#123;
         cin &gt;&gt; q[i];
-    &amp;#125;
-    for(int i = 1; i &lt;= n; i ++)    
-    &amp;#123;
+    &#125;
+    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++)    
+    &#123;
         cin &gt;&gt; p[i] ;
-    &amp;#125;
+    &#125;
 
-    sort(a + 1, a + n + 1, op);//先将分数进行排列
-    //a[1]-a[n] 的数值按照op进行排序
+    sort(a + 1, a + n + 1, op);&#x2F;&#x2F;先将分数进行排列
+    &#x2F;&#x2F;a[1]-a[n] 的数值按照op进行排序
 
-    for(int i = 1; i &lt;= r; i ++)
-    &amp;#123;
-        int b = 0;
-        for(int j = 1; j &lt;= n; j += 2)
-        &amp;#123;
-            if(p[a[j]] &gt;= p[a[j + 1]])//根据能力值来判断胜负
-            &amp;#123;
+    for(int i &#x3D; 1; i &lt;&#x3D; r; i ++)
+    &#123;
+        int b &#x3D; 0;
+        for(int j &#x3D; 1; j &lt;&#x3D; n; j +&#x3D; 2)
+        &#123;
+            if(p[a[j]] &gt;&#x3D; p[a[j + 1]])&#x2F;&#x2F;根据能力值来判断胜负
+            &#123;
                 q[a[j]] ++;
-                w[++ b] = a[j];
-                l[b] = a[j + 1];//记录胜者组记号和相对应的排名
-            &amp;#125;
+                w[++ b] &#x3D; a[j];
+                l[b] &#x3D; a[j + 1];&#x2F;&#x2F;记录胜者组记号和相对应的排名
+            &#125;
             else
-            &amp;#123;
+            &#123;
                 q[a[j + 1]] ++;
-                w[++ b] = a[j + 1];
-                l[b] = a[j];
-            &amp;#125;
-        &amp;#125;
-        int x = 1, y = 1, k = 1;
-        while(x &lt;= b &amp;&amp; y &lt;= b)
-        &amp;#123;
+                w[++ b] &#x3D; a[j + 1];
+                l[b] &#x3D; a[j];
+            &#125;
+        &#125;
+        int x &#x3D; 1, y &#x3D; 1, k &#x3D; 1;
+        while(x &lt;&#x3D; b &amp;&amp; y &lt;&#x3D; b)
+        &#123;
             if(op(w[x], l[y]))
-            &amp;#123;
-                a[k ++] = w[x ++];
-            &amp;#125;
+            &#123;
+                a[k ++] &#x3D; w[x ++];
+            &#125;
             else
-            &amp;#123;
-                a[k ++] = l[y ++];
-            &amp;#125;
-        &amp;#125;
+            &#123;
+                a[k ++] &#x3D; l[y ++];
+            &#125;
+        &#125;
 
-        while (x &lt;= b)
-        &amp;#123;
-            a[k ++] = w[x ++];
-        &amp;#125;
-        while (y &lt;= b)   
-        &amp;#123;
-            a[k ++] = l[y ++];
-        &amp;#125;
-    &amp;#125;
+        while (x &lt;&#x3D; b)
+        &#123;
+            a[k ++] &#x3D; w[x ++];
+        &#125;
+        while (y &lt;&#x3D; b)   
+        &#123;
+            a[k ++] &#x3D; l[y ++];
+        &#125;
+    &#125;
     cout &lt;&lt; a[t];
     return 0;
-&amp;#125;</code></pre>
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>这个题目需要开的数据比较多，但是题目里面的主体内容还是归并排序。只是在归并排序里面添加了两组，分为胜者组和败者组。</p>
 <p>每组比赛的胜者：赛前，总分是按降序排的；获胜后都得1分，仍是降序；</p>
 <p>每组比赛的负者：赛前，总分是按降序排的；不得分，仍是降序。</p>
@@ -1228,7 +1232,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">2.9k</span>&nbsp;字
+                class="white-color">3k</span>&nbsp;字
             
             
             

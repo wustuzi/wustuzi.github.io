@@ -468,7 +468,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1k
+                    1.1k
                 </div>
                 
 
@@ -487,164 +487,168 @@
             <div id="articleContent">
                 <p>我们这里所表示的高精度，大部分都是将大整数存储在数组中，来通过加减乘除基本运算法则，来对数组中的每一位数字来进行加减乘除，从而达到大整数加减乘除的目的。</p>
 <h1 id="高精度加减乘除"><a href="#高精度加减乘除" class="headerlink" title="高精度加减乘除"></a>高精度加减乘除</h1><h2 id="一、高精度加法"><a href="#一、高精度加法" class="headerlink" title="一、高精度加法"></a>一、高精度加法</h2><p>输入：两个大整数     输出：大整数相加的结果</p>
-<pre><code class="C++">#include &lt;iostream&gt;
+<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;iostream&gt;
 #include &lt;vector&gt;
 
 using namespace std;
 
 vector &lt;int&gt; add(vector&lt;int&gt; &amp;A, vector&lt;int&gt; &amp;B)
-&amp;#123;
+&#123;
     if(A.size() &lt; B.size()) return add(B, A);
 
     vector&lt;int&gt; C;
-    int t = 0;
-    for(int i = 0; i &lt; A.size(); i ++ )
-    &amp;#123;
-        t += A[i];
-        if(i &lt; B.size())    t += B[i];
+    int t &#x3D; 0;
+    for(int i &#x3D; 0; i &lt; A.size(); i ++ )
+    &#123;
+        t +&#x3D; A[i];
+        if(i &lt; B.size())    t +&#x3D; B[i];
         C.push_back(t % 10);
-        t /= 10; 
-    &amp;#125;
+        t &#x2F;&#x3D; 10; 
+    &#125;
     if(t)   C.push_back(t);
     return C;
-&amp;#125;
+&#125;
 int main()
-&amp;#123;
+&#123;
     string a, b;
     vector&lt;int&gt; A, B;
     cin &gt;&gt; a &gt;&gt; b;
-    for(int i = a.size() - 1; i &gt;= 0; i --)    A.push_back(a[i] - &#39;0&#39;);
-    for(int i = b.size() - 1; i &gt;= 0; i --)    B.push_back(b[i] - &#39;0&#39;);
+    for(int i &#x3D; a.size() - 1; i &gt;&#x3D; 0; i --)    A.push_back(a[i] - &#39;0&#39;);
+    for(int i &#x3D; b.size() - 1; i &gt;&#x3D; 0; i --)    B.push_back(b[i] - &#39;0&#39;);
 
-    auto C = add(A, B) ;
+    auto C &#x3D; add(A, B) ;
 
-    for(int i = C.size() - 1; i &gt;= 0; i --) cout &lt;&lt; C[i];
+    for(int i &#x3D; C.size() - 1; i &gt;&#x3D; 0; i --) cout &lt;&lt; C[i];
     cout &lt;&lt; endl;
 
     return 0;
-&amp;#125;</code></pre>
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>本题同时通过vector容器，节省了空间</p>
 <hr>
 <h2 id="二、高精度减法"><a href="#二、高精度减法" class="headerlink" title="二、高精度减法"></a>二、高精度减法</h2><p>输入：两个大整数，大小顺序无要求    输出：第一个数减去第二个数</p>
-<pre><code class="C++">#include &lt;iostream&gt;
+<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;iostream&gt;
 #include &lt;vector&gt;
 
 using namespace std;
 
 bool cmp(vector&lt;int&gt; &amp;A, vector&lt;int&gt; &amp;B)
-&amp;#123;
-    if (A.size() != B.size()) return A.size() &gt; B.size();
+&#123;
+    if (A.size() !&#x3D; B.size()) return A.size() &gt; B.size();
 
-    for (int i = A.size() - 1; i &gt;= 0; i -- )
-        if (A[i] != B[i])
+    for (int i &#x3D; A.size() - 1; i &gt;&#x3D; 0; i -- )
+        if (A[i] !&#x3D; B[i])
             return A[i] &gt; B[i];
 
     return true;
-&amp;#125;
+&#125;
 
 vector&lt;int&gt; sub(vector&lt;int&gt; &amp;A, vector&lt;int&gt; &amp;B)
-&amp;#123;
+&#123;
     vector&lt;int&gt; C;
-    for (int i = 0, t = 0; i &lt; A.size(); i ++ )
-    &amp;#123;
-        t = A[i] - t;
-        if (i &lt; B.size()) t -= B[i];
+    for (int i &#x3D; 0, t &#x3D; 0; i &lt; A.size(); i ++ )
+    &#123;
+        t &#x3D; A[i] - t;
+        if (i &lt; B.size()) t -&#x3D; B[i];
         C.push_back((t + 10) % 10);
-        if (t &lt; 0) t = 1;
-        else t = 0;
-    &amp;#125;
+        if (t &lt; 0) t &#x3D; 1;
+        else t &#x3D; 0;
+    &#125;
 
-    while (C.size() &gt; 1 &amp;&amp; C.back() == 0) C.pop_back();
+    while (C.size() &gt; 1 &amp;&amp; C.back() &#x3D;&#x3D; 0) C.pop_back();
     return C;
-&amp;#125;
+&#125;
 
 int main()
-&amp;#123;
+&#123;
     string a, b;
     vector&lt;int&gt; A, B;
     cin &gt;&gt; a &gt;&gt; b;
-    for (int i = a.size() - 1; i &gt;= 0; i -- ) A.push_back(a[i] - &#39;0&#39;);
-    for (int i = b.size() - 1; i &gt;= 0; i -- ) B.push_back(b[i] - &#39;0&#39;);
+    for (int i &#x3D; a.size() - 1; i &gt;&#x3D; 0; i -- ) A.push_back(a[i] - &#39;0&#39;);
+    for (int i &#x3D; b.size() - 1; i &gt;&#x3D; 0; i -- ) B.push_back(b[i] - &#39;0&#39;);
 
     vector&lt;int&gt; C;
 
-    if (cmp(A, B)) C = sub(A, B);
-    else C = sub(B, A), cout &lt;&lt; &#39;-&#39;;
+    if (cmp(A, B)) C &#x3D; sub(A, B);
+    else C &#x3D; sub(B, A), cout &lt;&lt; &#39;-&#39;;
 
-    for (int i = C.size() - 1; i &gt;= 0; i -- ) cout &lt;&lt; C[i];
+    for (int i &#x3D; C.size() - 1; i &gt;&#x3D; 0; i -- ) cout &lt;&lt; C[i];
     cout &lt;&lt; endl;
 
     return 0;
-&amp;#125;</code></pre>
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>本题的思路和大整数加法类似，唯一需要注意的是，当二者大小顺序相反时，即应当输出负数时，应该进行判断。 A-B &lt; 0, -(B-A)就是结果</p>
 <hr>
 <h2 id="三、高精度乘法"><a href="#三、高精度乘法" class="headerlink" title="三、高精度乘法"></a>三、高精度乘法</h2><p>输入：一个大整数和一个小整数    输出：两数相乘的结果</p>
-<pre><code class="C++">#include &lt;iostream&gt;
+<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;iostream&gt;
 #include &lt;vector&gt;
 
 using namespace std;
 
 vector&lt;int&gt; mul(vector&lt;int&gt; &amp;A, int b)
-&amp;#123;
+&#123;
     vector&lt;int&gt; C;
-    int t = 0;
-    for(int i = 0; i &lt; A.size(); i ++)
-    &amp;#123;
-        if(i &lt; A.size()) t += A[i] * b;
+    int t &#x3D; 0;
+    for(int i &#x3D; 0; i &lt; A.size(); i ++)
+    &#123;
+        if(i &lt; A.size()) t +&#x3D; A[i] * b;
         C.push_back(t % 10);
-        t /= 10;
-    &amp;#125;
-    if(t != 0)   C.push_back(t);
-    while (C.size() &gt; 1 &amp;&amp; C.back() == 0) C.pop_back();
+        t &#x2F;&#x3D; 10;
+    &#125;
+    if(t !&#x3D; 0)   C.push_back(t);
+    while (C.size() &gt; 1 &amp;&amp; C.back() &#x3D;&#x3D; 0) C.pop_back();
 
     return C;
-&amp;#125;
+&#125;
 int main()
-&amp;#123;
+&#123;
     int b;
     string a;
     cin &gt;&gt; a &gt;&gt; b;
     vector&lt;int&gt; A;
-    for(int i = a.size() - 1; i &gt;= 0; i --) A.push_back(a[i] - &#39;0&#39;);
-    auto C = mul(A, b);
-    for(int i = C.size() - 1; i &gt;= 0; i --) cout &lt;&lt; C[i];
+    for(int i &#x3D; a.size() - 1; i &gt;&#x3D; 0; i --) A.push_back(a[i] - &#39;0&#39;);
+    auto C &#x3D; mul(A, b);
+    for(int i &#x3D; C.size() - 1; i &gt;&#x3D; 0; i --) cout &lt;&lt; C[i];
     cout &lt;&lt; endl;
     return 0;
-&amp;#125;</code></pre>
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>开头用string存储大整数，用小整数来乘以大整数的每一位，然后根据所占的位数来进行进位。</p>
 <hr>
 <h2 id="四、高精度除法"><a href="#四、高精度除法" class="headerlink" title="四、高精度除法"></a>四、高精度除法</h2><p>输入：除数 被除数（不为0）    输出：除数除以被除数的结果</p>
-<pre><code class="C++">#include&lt;iostream&gt;
+<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include&lt;iostream&gt;
 #include&lt;vector&gt;
 #include &lt;algorithm&gt;
 
 using namespace std;
 vector&lt;int&gt; div(vector&lt;int&gt; &amp;A, int b, int &amp;r)
-&amp;#123;
+&#123;
     vector&lt;int&gt; C;
-    r = 0;
-    for(int i = A.size() - 1; i &gt;= 0; i --)
-    &amp;#123;
-        r = r * 10 + A[i];//借位
-        C.push_back(r / b);
-        r = r % b;
-    &amp;#125;
+    r &#x3D; 0;
+    for(int i &#x3D; A.size() - 1; i &gt;&#x3D; 0; i --)
+    &#123;
+        r &#x3D; r * 10 + A[i];&#x2F;&#x2F;借位
+        C.push_back(r &#x2F; b);
+        r &#x3D; r % b;
+    &#125;
     reverse(C.begin(), C.end());
-    while(C.size() &gt; 1 &amp;&amp; C.back() == 0) C.pop_back();
+    while(C.size() &gt; 1 &amp;&amp; C.back() &#x3D;&#x3D; 0) C.pop_back();
     return C;
-&amp;#125;
+&#125;
 int main()
-&amp;#123;
+&#123;
     int b, r;
     string a;
     cin &gt;&gt; a &gt;&gt; b;
     vector&lt;int&gt; A;
-    for(int i = a.size() - 1; i &gt;= 0; i --) A.push_back(a[i] - &#39;0&#39;);
-    auto C = div(A, b, r);
-    for(int i = C.size() - 1; i &gt;= 0; i --) cout &lt;&lt; C[i];
+    for(int i &#x3D; a.size() - 1; i &gt;&#x3D; 0; i --) A.push_back(a[i] - &#39;0&#39;);
+    auto C &#x3D; div(A, b, r);
+    for(int i &#x3D; C.size() - 1; i &gt;&#x3D; 0; i --) cout &lt;&lt; C[i];
     cout &lt;&lt; endl &lt;&lt; r &lt;&lt; endl;
     return 0;
-&amp;#125;</code></pre>
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>里面比较重要的是对于“借位”思想的代码操作，值得仔细琢磨</p>
 <hr>
 
@@ -1258,7 +1262,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">2.9k</span>&nbsp;字
+                class="white-color">3k</span>&nbsp;字
             
             
             
