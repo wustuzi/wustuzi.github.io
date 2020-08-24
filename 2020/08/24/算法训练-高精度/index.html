@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="算法训练  归并排序, KQ的博客">
+    <meta name="keywords" content="算法训练 高精度, KQ的博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>算法训练  归并排序 | KQ的博客</title>
+    <title>算法训练 高精度 | KQ的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -308,12 +308,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">算法训练  归并排序</h1>
+                    <h1 class="description center-align post-title">算法训练 高精度</h1>
                 </div>
             </div>
         </div>
@@ -459,7 +459,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-08-23
+                    2020-08-24
                 </div>
                 
 
@@ -468,7 +468,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    939
+                    828
                 </div>
                 
 
@@ -485,145 +485,115 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>在学习了快排和归并排序的模板之后，快排在我们的题目中基本是不会出现的，出现的一般都是归并排序，在这里我记录几个训练过觉得比较有意义的归并排序的题目（题目均源自：洛谷）</p>
-<hr>
-<h1 id="归并排序题目"><a href="#归并排序题目" class="headerlink" title="归并排序题目"></a>归并排序题目</h1><h2 id="一、最接近神的人"><a href="#一、最接近神的人" class="headerlink" title="一、最接近神的人"></a>一、最接近神的人</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1774">原题链接</a></p>
+                <p>高精度里面，最根本的就是学会用数组来存储数据，灵活运用数组，将可以很好的掌握所有类型的高精度题目</p>
+<h1 id="算法训练-高精度"><a href="#算法训练-高精度" class="headerlink" title="算法训练 高精度"></a>算法训练 高精度</h1><h2 id="一、高精度乘法（两个大整数）"><a href="#一、高精度乘法（两个大整数）" class="headerlink" title="一、高精度乘法（两个大整数）"></a>一、高精度乘法（两个大整数）</h2><p><img src="https://img-blog.csdnimg.cn/20200824214321829.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3d1c3R1emk=,size_16,color_FFFFFF,t_70#pic_center" alt="高精度乘法"></p>
 <p>题解：</p>
 <pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;iostream&gt;
 
 using namespace std;
 
-const int N &#x3D; 500050;
-int q[N], p[N];
-long long sum;
-void sort(int q[], int l, int r)
+const int N &#x3D; 10000010;
+
+int A[N], B[N], C[N];
+
+int main()
 &#123;
-    if(l &gt;&#x3D; r)  return;
-    int mid &#x3D; (l + r) &#x2F; 2;
-    sort(q, l, mid), sort(q, mid + 1, r);
-    int i &#x3D; l, j &#x3D; mid + 1, k &#x3D; 0;
-    while(i &lt;&#x3D; mid &amp;&amp; j &lt;&#x3D; r)
+    string a, b;
+    cin &gt;&gt; a &gt;&gt; b;
+    int x &#x3D; a.length(), y &#x3D; b.length();
+
+    for(int i &#x3D; x; i &gt; 0; i --) A[i] &#x3D; (a[x - i] - &#39;0&#39;);
+    for(int i &#x3D; y; i &gt; 0; i --) B[i] &#x3D; (b[y - i] - &#39;0&#39;);
+
+    for(int i &#x3D; 1; i &lt;&#x3D; x; i ++)
     &#123;
-        if(q[i] &lt;&#x3D; q[j])
+        for(int j &#x3D; 1; j &lt;&#x3D; y; j ++)
         &#123;
-            p[k ++] &#x3D; q[i ++];
-        &#125;
-        else
-        &#123;
-            p[k ++] &#x3D; q[j ++];
-            sum +&#x3D; mid - i + 1;&#x2F;&#x2F;核心
+            C[i + j - 1] +&#x3D; A[i] * B[j];
         &#125;
     &#125;
-    while(i &lt;&#x3D; mid) p[k ++] &#x3D; q[i ++];
-    while(j &lt;&#x3D; r)   p[k ++] &#x3D; q[j ++];
 
-    for(i &#x3D; l, j &#x3D; 0; i &lt;&#x3D; r; i ++, j ++)   q[i] &#x3D; p[j];
-&#125;
+    int l &#x3D; x + y;
+    int t &#x3D; 0;
+    for(int i &#x3D; 1; i &lt;&#x3D; l; i ++)
+    &#123;
+        C[i] +&#x3D; t;
+        t &#x3D; C[i] &#x2F; 10;
+        C[i] %&#x3D; 10;
+    &#125;
+    int k;
+    while(C[l] &#x3D;&#x3D; 0 &amp;&amp; l &gt; 1) l --;
+    for(int i &#x3D; l; l &gt; 0; l --)    cout &lt;&lt; C[l];
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>乘法题目需要注意的是每几位相乘的结果所在的位，比如个位乘百位和十位乘十位的结果均放置在答案数组的百位位置。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1303">原题链接</a></p>
+<hr>
+<h2 id="二、B进制星球"><a href="#二、B进制星球" class="headerlink" title="二、B进制星球"></a>二、B进制星球</h2><p><img src="https://img-blog.csdnimg.cn/20200824214721153.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3d1c3R1emk=,size_16,color_FFFFFF,t_70#pic_center" alt="B进制星球"></p>
+<p>题解：</p>
+<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;iostream&gt;
+
+using namespace std;
+
+const int N &#x3D; 10000100;
+int A[N], B[N], C[N];
 int main()
 &#123;
     int n;
-    cin &gt;&gt; n;
-    for(int i &#x3D; 0; i &lt; n; i ++) cin &gt;&gt; q[i];
-    sort(q, 0, n - 1);
-    cout &lt;&lt; sum;
+    string a, b;
+    cin &gt;&gt; n &gt;&gt; a &gt;&gt; b;
+    int x &#x3D; a.length(), y &#x3D; b.length();
+
+    for(int i &#x3D; x; i &gt; 0; i --) 
+    &#123;
+        if(n &gt;&#x3D; 10 &amp;&amp; a[x - i] &gt;&#x3D; &#39;A&#39;) A[i] &#x3D; (a[x - i] - &#39;A&#39; + 10);
+        else    A[i] &#x3D; (a[x - i] - &#39;0&#39;);
+    &#125;
+    for(int i &#x3D; y; i &gt; 0; i --)
+    &#123;
+        if(n &gt;&#x3D; 10 &amp;&amp; b[y - i] &gt;&#x3D; &#39;A&#39;) B[i] &#x3D; (b[y - i] - &#39;A&#39; + 10);
+        else    B[i] &#x3D; (b[y - i] - &#39;0&#39;);
+    &#125;
+
+    for(int i &#x3D; 1 ; i &lt;&#x3D; x || i &lt;&#x3D; y; i ++)&#x2F;&#x2F;相加
+    &#123;
+        C[i] &#x3D; A[i] + B[i];
+    &#125;
+
+
+    &#x2F;&#x2F;进位
+    int l &#x3D; x + y;
+    int t &#x3D; 0;
+    for(int i &#x3D; 1; i &lt;&#x3D; l; i ++)
+    &#123;
+        C[i] +&#x3D; t;
+        t &#x3D; C[i] &#x2F; n;
+        C[i] %&#x3D; n;
+    &#125;
+
+    while(C[l] &#x3D;&#x3D; 0 &amp;&amp; l &gt; 0) l --;
+
+    for(int i &#x3D; l; i &gt; 0; i --)
+    &#123;
+        if(C[i] &lt; 10)   cout &lt;&lt; C[i];
+        else 
+        &#123;
+            cout &lt;&lt; char(&#39;A&#39; + C[i] - 10);
+        &#125;
+    &#125;
+
     return 0;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-
-
-<p>本题在归并排序的条件之下，进行了一些更为基本的调整，在进行大小顺序相反的交换时，会进行操作sum += mid - i + 1，这是本题的核心语句，仅当大小顺序相反时进行语句。</p>
+<p>本题和普通的高精度题目相比有两点需要注意的<br>①当输入进制数的时候，需要对进制数进行判断，是否为十进制以上的进制，并且输入的字母要转换成相对应的数字</p>
+<p>②在最后进位的时候，进位的数值要以输入的B进制为准，并且结果输出时也需要进行字母的转换。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1604">原题链接</a></p>
 <hr>
-<h2 id="二、瑞士轮"><a href="#二、瑞士轮" class="headerlink" title="二、瑞士轮"></a>二、瑞士轮</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1309">原题链接</a></p>
-<p>题解：</p>
-<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;iostream&gt;
-#include &lt;algorithm&gt;
-#include &lt;stdio.h&gt;
-using namespace std;
-
-const int N &#x3D; 200100;
-int p[N], q[N], a[N];
-&#x2F;&#x2F;p存放能力值 q存放分数 a存放排名
-int w[N], l[N];
-&#x2F;&#x2F;w数组存放赢的人的序号 l数组存放输的人的序号
-
-bool op(int x, int y)
-&#123;
-    if(q[x] &#x3D;&#x3D; q[y])    return x &lt; y;
-    return q[x] &gt; q[y];
-&#125;
-
-int main()
-&#123;
-    int n, r, t;
-    &#x2F;&#x2F;2*n是总选手数目 r是比赛轮次 q是关注的排名
-    cin &gt;&gt; n &gt;&gt; r &gt;&gt; t;
-    n *&#x3D; 2;
-    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++)    
-    &#123;
-        a[i] &#x3D; i;
-    &#125;
-    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++)    
-    &#123;
-        cin &gt;&gt; q[i];
-    &#125;
-    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++)    
-    &#123;
-        cin &gt;&gt; p[i] ;
-    &#125;
-
-    sort(a + 1, a + n + 1, op);&#x2F;&#x2F;先将分数进行排列
-    &#x2F;&#x2F;a[1]-a[n] 的数值按照op进行排序
-
-    for(int i &#x3D; 1; i &lt;&#x3D; r; i ++)
-    &#123;
-        int b &#x3D; 0;
-        for(int j &#x3D; 1; j &lt;&#x3D; n; j +&#x3D; 2)
-        &#123;
-            if(p[a[j]] &gt;&#x3D; p[a[j + 1]])&#x2F;&#x2F;根据能力值来判断胜负
-            &#123;
-                q[a[j]] ++;
-                w[++ b] &#x3D; a[j];
-                l[b] &#x3D; a[j + 1];&#x2F;&#x2F;记录胜者组记号和相对应的排名
-            &#125;
-            else
-            &#123;
-                q[a[j + 1]] ++;
-                w[++ b] &#x3D; a[j + 1];
-                l[b] &#x3D; a[j];
-            &#125;
-        &#125;
-        int x &#x3D; 1, y &#x3D; 1, k &#x3D; 1;
-        while(x &lt;&#x3D; b &amp;&amp; y &lt;&#x3D; b)
-        &#123;
-            if(op(w[x], l[y]))
-            &#123;
-                a[k ++] &#x3D; w[x ++];
-            &#125;
-            else
-            &#123;
-                a[k ++] &#x3D; l[y ++];
-            &#125;
-        &#125;
-
-        while (x &lt;&#x3D; b)
-        &#123;
-            a[k ++] &#x3D; w[x ++];
-        &#125;
-        while (y &lt;&#x3D; b)   
-        &#123;
-            a[k ++] &#x3D; l[y ++];
-        &#125;
-    &#125;
-    cout &lt;&lt; a[t];
-    return 0;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>这个题目需要开的数据比较多，但是题目里面的主体内容还是归并排序。只是在归并排序里面添加了两组，分为胜者组和败者组。</p>
-<p>每组比赛的胜者：赛前，总分是按降序排的；获胜后都得1分，仍是降序；</p>
-<p>每组比赛的负者：赛前，总分是按降序排的；不得分，仍是降序。</p>
-<p>先按初始分数排序，然后按分数高低两人一组比赛；</p>
-<p>胜者入队A，负者入队B。这样A、B自身仍是有序的；</p>
-<p>只需进行合并操作即可，合并操作的复杂度是O(n),而如果用快排其复杂度为O(nlogn)。</p>
+<p>高精度基础解题思路<br>①大整数存储<br>先用string类型存储我们所需要进行计算的大整数<br>再依次将每一位存入数组当中，需要注意的是，在数组中从小到大依次从大整数的低位开始进行存储</p>
+<p>②将大整数所对应的数组拿来进行相应的加减乘除运算<br>（依据竖式加减乘除法则）</p>
+<p>③将所得的结果存储进另一个空数组，并对每一位是否需要进位的查询操作</p>
+<p>④将进位之后的结果数组依次高位向地位输出。</p>
 <hr>
 
             </div>
@@ -650,7 +620,7 @@ int main()
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://wustuzi.github.io/2020/08/23/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83-%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/">http://wustuzi.github.io/2020/08/23/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83-%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/</a>
+                    <a href="http://wustuzi.github.io/2020/08/24/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83-%E9%AB%98%E7%B2%BE%E5%BA%A6/">http://wustuzi.github.io/2020/08/24/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83-%E9%AB%98%E7%B2%BE%E5%BA%A6/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -864,7 +834,7 @@ int main()
         repo: 'wustuzi.github.io',
         owner: 'wustuzi',
         admin: "wustuzi",
-        id: '2020-08-23T20-46-03',
+        id: '2020-08-24T21-27-19',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -888,9 +858,69 @@ int main()
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2020/08/24/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83-%E9%AB%98%E7%B2%BE%E5%BA%A6/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="算法训练 高精度">
+                        
+                        <span class="card-title">算法训练 高精度</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            高精度里面，最根本的就是学会用数组来存储数据，灵活运用数组，将可以很好的掌握所有类型的高精度题目
+算法训练 高精度一、高精度乘法（两个大整数）
+题解：
+#include &lt;iostream&gt;
+
+using namespace s
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-24
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    基础算法学习
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/C/">
+                        <span class="chip bg-color">C++</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83/">
+                        <span class="chip bg-color">算法训练</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2020/08/24/%E7%AE%97%E6%B3%95-%E9%AB%98%E7%B2%BE%E5%BA%A6/">
                     <div class="card-image">
@@ -910,63 +940,8 @@ int main()
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-08-24
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/" class="post-category">
-                                    基础算法学习
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/">
-                        <span class="chip bg-color">基础算法</span>
-                    </a>
-                    
-                    <a href="/tags/C/">
-                        <span class="chip bg-color">C++</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/08/23/%E7%AE%97%E6%B3%95-%E6%8E%92%E5%BA%8F/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="算法  排序">
-                        
-                        <span class="card-title">算法  排序</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            虽然在C++里面有他自己所对应的sort函数，可以非常方便的来进行数组的排序，但是可以手写一个排序也是我们所必须要掌握的，这里介绍快速排序和归并排序两种排序
-排序下面我们介绍两种排序方式
-一、快速排序#include &lt;iostrea
-                        
-                    </div>
-                    <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-23
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-24
                             </span>
                         <span class="publish-author">
                             

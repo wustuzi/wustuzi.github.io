@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>算法训练 高精度</title>
+      <link href="/2020/08/24/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83-%E9%AB%98%E7%B2%BE%E5%BA%A6/"/>
+      <url>/2020/08/24/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83-%E9%AB%98%E7%B2%BE%E5%BA%A6/</url>
+      
+        <content type="html"><![CDATA[<p>高精度里面，最根本的就是学会用数组来存储数据，灵活运用数组，将可以很好的掌握所有类型的高精度题目</p><h1 id="算法训练-高精度"><a href="#算法训练-高精度" class="headerlink" title="算法训练 高精度"></a>算法训练 高精度</h1><h2 id="一、高精度乘法（两个大整数）"><a href="#一、高精度乘法（两个大整数）" class="headerlink" title="一、高精度乘法（两个大整数）"></a>一、高精度乘法（两个大整数）</h2><p><img src="https://img-blog.csdnimg.cn/20200824214321829.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3d1c3R1emk=,size_16,color_FFFFFF,t_70#pic_center" alt="高精度乘法"></p><p>题解：</p><pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;iostream&gt;using namespace std;const int N &#x3D; 10000010;int A[N], B[N], C[N];int main()&#123;    string a, b;    cin &gt;&gt; a &gt;&gt; b;    int x &#x3D; a.length(), y &#x3D; b.length();    for(int i &#x3D; x; i &gt; 0; i --) A[i] &#x3D; (a[x - i] - &#39;0&#39;);    for(int i &#x3D; y; i &gt; 0; i --) B[i] &#x3D; (b[y - i] - &#39;0&#39;);    for(int i &#x3D; 1; i &lt;&#x3D; x; i ++)    &#123;        for(int j &#x3D; 1; j &lt;&#x3D; y; j ++)        &#123;            C[i + j - 1] +&#x3D; A[i] * B[j];        &#125;    &#125;    int l &#x3D; x + y;    int t &#x3D; 0;    for(int i &#x3D; 1; i &lt;&#x3D; l; i ++)    &#123;        C[i] +&#x3D; t;        t &#x3D; C[i] &#x2F; 10;        C[i] %&#x3D; 10;    &#125;    int k;    while(C[l] &#x3D;&#x3D; 0 &amp;&amp; l &gt; 1) l --;    for(int i &#x3D; l; l &gt; 0; l --)    cout &lt;&lt; C[l];    return 0;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>乘法题目需要注意的是每几位相乘的结果所在的位，比如个位乘百位和十位乘十位的结果均放置在答案数组的百位位置。</p><p><a href="https://www.luogu.com.cn/problem/P1303">原题链接</a></p><hr><h2 id="二、B进制星球"><a href="#二、B进制星球" class="headerlink" title="二、B进制星球"></a>二、B进制星球</h2><p><img src="https://img-blog.csdnimg.cn/20200824214721153.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3d1c3R1emk=,size_16,color_FFFFFF,t_70#pic_center" alt="B进制星球"></p><p>题解：</p><pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;iostream&gt;using namespace std;const int N &#x3D; 10000100;int A[N], B[N], C[N];int main()&#123;    int n;    string a, b;    cin &gt;&gt; n &gt;&gt; a &gt;&gt; b;    int x &#x3D; a.length(), y &#x3D; b.length();    for(int i &#x3D; x; i &gt; 0; i --)     &#123;        if(n &gt;&#x3D; 10 &amp;&amp; a[x - i] &gt;&#x3D; &#39;A&#39;) A[i] &#x3D; (a[x - i] - &#39;A&#39; + 10);        else    A[i] &#x3D; (a[x - i] - &#39;0&#39;);    &#125;    for(int i &#x3D; y; i &gt; 0; i --)    &#123;        if(n &gt;&#x3D; 10 &amp;&amp; b[y - i] &gt;&#x3D; &#39;A&#39;) B[i] &#x3D; (b[y - i] - &#39;A&#39; + 10);        else    B[i] &#x3D; (b[y - i] - &#39;0&#39;);    &#125;    for(int i &#x3D; 1 ; i &lt;&#x3D; x || i &lt;&#x3D; y; i ++)&#x2F;&#x2F;相加    &#123;        C[i] &#x3D; A[i] + B[i];    &#125;    &#x2F;&#x2F;进位    int l &#x3D; x + y;    int t &#x3D; 0;    for(int i &#x3D; 1; i &lt;&#x3D; l; i ++)    &#123;        C[i] +&#x3D; t;        t &#x3D; C[i] &#x2F; n;        C[i] %&#x3D; n;    &#125;    while(C[l] &#x3D;&#x3D; 0 &amp;&amp; l &gt; 0) l --;    for(int i &#x3D; l; i &gt; 0; i --)    &#123;        if(C[i] &lt; 10)   cout &lt;&lt; C[i];        else         &#123;            cout &lt;&lt; char(&#39;A&#39; + C[i] - 10);        &#125;    &#125;    return 0;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>本题和普通的高精度题目相比有两点需要注意的<br>①当输入进制数的时候，需要对进制数进行判断，是否为十进制以上的进制，并且输入的字母要转换成相对应的数字</p><p>②在最后进位的时候，进位的数值要以输入的B进制为准，并且结果输出时也需要进行字母的转换。</p><p><a href="https://www.luogu.com.cn/problem/P1604">原题链接</a></p><hr><p>高精度基础解题思路<br>①大整数存储<br>先用string类型存储我们所需要进行计算的大整数<br>再依次将每一位存入数组当中，需要注意的是，在数组中从小到大依次从大整数的低位开始进行存储</p><p>②将大整数所对应的数组拿来进行相应的加减乘除运算<br>（依据竖式加减乘除法则）</p><p>③将所得的结果存储进另一个空数组，并对每一位是否需要进位的查询操作</p><p>④将进位之后的结果数组依次高位向地位输出。</p><hr>]]></content>
+      
+      
+      <categories>
+          
+          <category> 基础算法学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> 算法训练 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>算法 高精度</title>
       <link href="/2020/08/24/%E7%AE%97%E6%B3%95-%E9%AB%98%E7%B2%BE%E5%BA%A6/"/>
       <url>/2020/08/24/%E7%AE%97%E6%B3%95-%E9%AB%98%E7%B2%BE%E5%BA%A6/</url>
