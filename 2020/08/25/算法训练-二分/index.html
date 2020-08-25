@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="算法  排序, KQ的博客">
+    <meta name="keywords" content="算法训练 二分, KQ的博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>算法  排序 | KQ的博客</title>
+    <title>算法训练 二分 | KQ的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -308,12 +308,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">算法  排序</h1>
+                    <h1 class="description center-align post-title">算法训练 二分</h1>
                 </div>
             </div>
         </div>
@@ -430,12 +430,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/">
-                                <span class="chip bg-color">基础算法</span>
-                            </a>
-                        
                             <a href="/tags/C/">
                                 <span class="chip bg-color">C++</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83/">
+                                <span class="chip bg-color">算法训练</span>
                             </a>
                         
                     </div>
@@ -459,7 +459,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-08-23
+                    2020-08-25
                 </div>
                 
 
@@ -468,14 +468,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    555
+                    1.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    5 分
                 </div>
                 
 
@@ -485,85 +485,177 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>虽然在C++里面有他自己所对应的sort函数，可以非常方便的来进行数组的排序，但是可以手写一个排序也是我们所必须要掌握的，这里介绍快速排序和归并排序两种排序</p>
-<h1 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h1><p>下面我们介绍两种排序方式</p>
-<h2 id="一、快速排序"><a href="#一、快速排序" class="headerlink" title="一、快速排序"></a>一、快速排序</h2><pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;iostream&gt;
-
+                <p>在基本掌握了二分的概念之后，如何在题目中，对应不同的题目，灵活使用，灵活改变while里面if的形式，是我们灵活解决二分题目的关键</p>
+<h1 id="算法训练-二分"><a href="#算法训练-二分" class="headerlink" title="算法训练 二分"></a>算法训练 二分</h1><h2 id="一、砍树"><a href="#一、砍树" class="headerlink" title="一、砍树"></a>一、砍树</h2><p><img src="https://img-blog.csdnimg.cn/20200825214819393.png" alt="砍树"></p>
+<p>题解：</p>
+<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
 using namespace std;
-
-const int N &#x3D; 100010;
-
+const int N &#x3D; 1000010;
 int q[N];
-
-void quick_sort(int q[], int l, int r)
+int n;
+long long m;
+bool check(int x)&#x2F;&#x2F;判断if里面的东西 在这个x答案的时候是否符合题目要求 以此来缩小区间
 &#123;
-    if (l &gt;&#x3D; r) return;
-
-    int i &#x3D; l - 1, j &#x3D; r + 1, x &#x3D; q[l + r &gt;&gt; 1];
-    while (i &lt; j)
-    &#123;
-        do i ++ ; while (q[i] &lt; x);&#x2F;&#x2F;当找到比x小的停下
-        do j -- ; while (q[j] &gt; x);&#x2F;&#x2F;当找到比x大的停下
-        if (i &lt; j) swap(q[i], q[j]);&#x2F;&#x2F;两数交换
-    &#125;
-
-    quick_sort(q, l, j);
-    quick_sort(q, j + 1, r);
+    long long sum &#x3D; 0;
+    for(int i &#x3D; n; q[i] &gt; x &amp;&amp; i &gt;&#x3D; 1; i --)    sum +&#x3D; q[i] - x;
+    if(sum &gt;&#x3D; m) return true;
+    else return false;
 &#125;
-
 int main()
 &#123;
-    int n;
-    scanf(&quot;%d&quot;, &amp;n);
+    cin &gt;&gt; n &gt;&gt; m;
+    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ )   cin &gt;&gt; q[i];
 
-    for (int i &#x3D; 0; i &lt; n; i ++ ) scanf(&quot;%d&quot;, &amp;q[i]);
+    sort(q + 1, q + 1 + n);
 
-    quick_sort(q, 0, n - 1);
+    int l &#x3D; 0, r &#x3D; q[n], mid;
+    while(l &lt; r)
+    &#123;
+        mid &#x3D; (l + r + 1) &#x2F; 2;
+        if(check(mid))  l &#x3D; mid;
+        else r &#x3D; mid - 1;
+    &#125;
+    cout &lt;&lt; r;
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-    for (int i &#x3D; 0; i &lt; n; i ++ ) printf(&quot;%d &quot;, q[i]);
+<p>这个题应该算是二分当中比较基础的一道题目，非常简单，我们二分的目标主要就是答案，我们需要砍树的高度就是我们需要去求得的结果，然而这个结果有一个区间，区间显然是0 ——这群树的最高高度。<br>然后通过二分答案区间组来快速求得答案。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1873">原题链接</a></p>
+<hr>
+<h2 id="二、数列分段-Section-II"><a href="#二、数列分段-Section-II" class="headerlink" title="二、数列分段 Section II"></a>二、数列分段 Section II</h2><p><img src="https://img-blog.csdnimg.cn/20200825214908401.png" alt="数列分段 Section II"></p>
+<p>题解：</p>
+<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include&lt;iostream&gt;
 
+using namespace std;
+const int N &#x3D; 1000100;
+int m, n;
+int q[N];
+bool check(long long x)&#x2F;&#x2F;x的意思代表一组和最大为x
+&#123;
+    int s &#x3D; 0, num &#x3D; 0;
+    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ )
+    &#123;
+        if(s + q[i] &gt; x )   
+        &#123;
+            num ++, s &#x3D; 0;
+        &#125;
+        s +&#x3D; q[i];
+        if(num &gt;&#x3D; m) return false;&#x2F;&#x2F;当组数超过题目条件时，失败
+    &#125;
+    return true;&#x2F;&#x2F;当运行到这里还没有return false时即表示该答案区间可以
+&#125;
+int main()
+&#123;
+    cin &gt;&gt; n &gt;&gt; m;
+    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ )   cin &gt;&gt; q[i];
+    long long sum &#x3D; 0, max &#x3D; 0;
+    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ )
+    &#123;
+        sum +&#x3D; q[i];
+        if(max &lt;&#x3D; q[i]) max &#x3D; q[i];
+    &#125;
+
+    long long l &#x3D; max, r &#x3D; sum, mid;&#x2F;&#x2F;最小的一组是最大的单个数，最大的是全部一组
+    while(l &lt; r)
+    &#123;
+        mid &#x3D; (l + r) &#x2F; 2;
+        if(check(mid))  r &#x3D; mid;
+        else l &#x3D; mid + 1;
+    &#125;
+    cout &lt;&lt; l;
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这个题目很有意思，我们二分的是我们所需要的答案，但是我们需要将我们求得答案的区间进行压缩，右区间显然是全部数值相加的和，左区间应该是我们的全部数组中每个元素的最大值.然后通过二分求得该答案是否可行。二分的时候在check函数里面，我们可以定义一个数，来对每一个已经达到我们测试的值进行分装。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1182">原题链接</a></p>
+<hr>
+<h2 id="三、切绳子"><a href="#三、切绳子" class="headerlink" title="三、切绳子"></a>三、切绳子</h2><p><img src="https://img-blog.csdnimg.cn/20200825214928931.png" alt="切绳子"></p>
+<p>题解：</p>
+<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;stdio.h&gt;
+using namespace std;
+const int N &#x3D; 10010;
+int n, k;
+float q[N];
+bool check(float x)
+&#123;
+    int num &#x3D; 0;
+    float a;
+    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ )
+    &#123;
+        a &#x3D; q[i]; 
+        while(a - x &gt; 0)
+        &#123;
+            num ++;
+            a -&#x3D; x;
+        &#125;
+        if(num &gt;&#x3D; k)    return true;总长度大于等于所需长度
+    &#125;
+    return false;
+&#125;
+int main()
+&#123;
+    cin &gt;&gt; n &gt;&gt; k;
+    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ )   cin &gt;&gt; q[i];
+
+    sort(q + 1, q + n + 1);
+
+    float l &#x3D; 0.01, r &#x3D; q[n], mid;
+    while(r - l &gt; 0.01)&#x2F;&#x2F;当所取区间小于一个数字时即停止
+    &#123;
+        mid &#x3D; (l + r) &#x2F; 2;
+        if(check(mid))  l &#x3D; mid;
+        else    r &#x3D; mid - 0.01;
+    &#125;
+    printf(&quot;%.2f&quot;, l);
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这个题需要灵活运用的地方很多，可以仔细理解。</p>
+<hr>
+<h2 id="四、进击的奶牛"><a href="#四、进击的奶牛" class="headerlink" title="四、进击的奶牛"></a>四、进击的奶牛</h2><p><img src="https://img-blog.csdnimg.cn/20200825214841822.png" alt="进击的奶牛"></p>
+<p>题解：</p>
+<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+
+
+int A[1000010];
+int a, n, c;
+bool check(int m)
+&#123;
+    int num &#x3D; 0;
+    int x &#x3D; A[1];&#x2F;&#x2F;第一只牛的储存位置
+    for(int i &#x3D; 2; i &lt;&#x3D; n; i ++)
+    &#123;
+        if(A[i] - x &lt; m)   num ++;
+        else    x &#x3D; A[i];&#x2F;&#x2F;变成“第一只牛”
+        if(num &gt; a) return false;
+    &#125;
+    return true;
+&#125;
+int main()
+&#123;
+    cin &gt;&gt; n &gt;&gt; c;
+
+    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ )   cin &gt;&gt; A[i];
+    sort(A + 1, A + n + 1);
+    a &#x3D; n - c;
+    int l &#x3D; 1, r &#x3D; A[n] - A[1], mid;&#x2F;&#x2F;最小的时候距离为1 最大的时候只有两只牛
+    while(l + 1 &lt; r)
+    &#123;
+        mid &#x3D; (l + r) &#x2F; 2;
+        if(check(mid))  l &#x3D; mid;
+        else    r &#x3D; mid;
+    &#125;
+    if(check(r)) cout &lt;&lt; r;
+    else cout &lt;&lt; l;
     return 0;
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>本段代码通过多次将数组分为两份，来实现排序。</p>
-<hr>
-<h2 id="二、归并排序"><a href="#二、归并排序" class="headerlink" title="二、归并排序"></a>二、归并排序</h2><pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include&lt;iostream&gt;
-
-using namespace std;
-const int N &#x3D; 100010;
-int q[N], p[N];
-int n;
-
-void msort(int l, int r)
-&#123;
-    if(l &gt;&#x3D; r)  return;
-
-    int mid &#x3D; (l + r) &#x2F; 2;
-    msort(l, mid), msort(mid + 1, r);&#x2F;&#x2F;分割成多个小的数组
-
-    int i &#x3D; l, j &#x3D; mid + 1, k &#x3D; 1;
-    while(i &lt;&#x3D; mid &amp;&amp; j &lt;&#x3D; r)
-    &#123;
-        if(q[i] &lt;&#x3D; q[j])    p[k ++] &#x3D; q[i ++];&#x2F;&#x2F;比较大小
-        if(q[i] &gt; q[j])     p[k ++] &#x3D; q[j ++];
-    &#125;
-
-    while(i &lt;&#x3D; mid) p[k ++] &#x3D; q[i ++];&#x2F;&#x2F;将没有塞进p数组的数字依次“丢进去”
-    while(j &lt;&#x3D; r)   p[k ++] &#x3D; q[j ++];
-
-    for(int i &#x3D; l, j &#x3D; 1; i &lt;&#x3D; r;)  q[i ++] &#x3D; p[j ++];
-&#125;
-int main()
-&#123;
-    cin &gt;&gt; n;
-    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ )   cin &gt;&gt; q[i];
-
-    msort(1, n);
-    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ )   cout &lt;&lt; q[i] &lt;&lt; &#39; &#39;;
-    return 0;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>先递归依次将数组分为多个小数组，然后对于每个小数组来进行比较操作，并用一个p数组来存储结果，最后将p数组的值赋值给q数组来达到排序的目的。</p>
+<p>这个题目也是和之前的题目一样，通过筛选答案的区间，从而得到题解，这个题题目很巧妙，通过放牛进坑的方式来得到这道题最终的答案。</p>
 <hr>
 
             </div>
@@ -590,7 +682,7 @@ int main()
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://wustuzi.github.io/2020/08/23/%E7%AE%97%E6%B3%95-%E6%8E%92%E5%BA%8F/">http://wustuzi.github.io/2020/08/23/%E7%AE%97%E6%B3%95-%E6%8E%92%E5%BA%8F/</a>
+                    <a href="http://wustuzi.github.io/2020/08/25/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83-%E4%BA%8C%E5%88%86/">http://wustuzi.github.io/2020/08/25/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83-%E4%BA%8C%E5%88%86/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -628,12 +720,12 @@ int main()
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/">
-                                    <span class="chip bg-color">基础算法</span>
-                                </a>
-                            
                                 <a href="/tags/C/">
                                     <span class="chip bg-color">C++</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83/">
+                                    <span class="chip bg-color">算法训练</span>
                                 </a>
                             
                         </div>
@@ -804,7 +896,7 @@ int main()
         repo: 'wustuzi.github.io',
         owner: 'wustuzi',
         admin: "wustuzi",
-        id: '2020-08-23T20-25-26',
+        id: '2020-08-25T21-43-48',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -828,33 +920,34 @@ int main()
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/08/23/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83-%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/">
+                <a href="/2020/08/25/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83-%E4%BA%8C%E5%88%86/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="算法训练  归并排序">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="算法训练 二分">
                         
-                        <span class="card-title">算法训练  归并排序</span>
+                        <span class="card-title">算法训练 二分</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            在学习了快排和归并排序的模板之后，快排在我们的题目中基本是不会出现的，出现的一般都是归并排序，在这里我记录几个训练过觉得比较有意义的归并排序的题目（题目均源自：洛谷）
-
-归并排序题目一、最接近神的人原题链接
+                            在基本掌握了二分的概念之后，如何在题目中，对应不同的题目，灵活使用，灵活改变while里面if的形式，是我们灵活解决二分题目的关键
+算法训练 二分一、砍树
 题解：
-#include &lt
+#include&lt;iostream&gt;
+#include&lt;a
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-08-23
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-25
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -867,6 +960,7 @@ int main()
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -889,32 +983,36 @@ int main()
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/08/22/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">
+                <a href="/2020/08/25/%E7%AE%97%E6%B3%95-%E4%BA%8C%E5%88%86/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Markdown基本语法">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="算法 二分">
                         
-                        <span class="card-title">Markdown基本语法</span>
+                        <span class="card-title">算法 二分</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            在我们写博客的过程中，熟练掌握markdown语法，常常会使得自己的办事效率有事半功倍的效果，所以掌握markdown语法，是我们写博客的第一步，也是最基础重要的一步。
-Markdown快速入门（typora）1.代码块：&#x2F;&#x
+                            二分是我们在解题时候常用的一种可以对有序的数列进行快速查找的一种方法，熟练灵活运用二分模板，可以在一些特定时候极大加快运行速度。
+二分一、查找
+题解：
+#include &lt;iostream&gt;
+
+using namespace s
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-22
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-25
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Markdown%E5%85%A5%E9%97%A8/" class="post-category">
-                                    Markdown入门
+                            <a href="/categories/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    基础算法学习
                                 </a>
                             
                             
@@ -924,8 +1022,12 @@ Markdown快速入门（typora）1.代码块：&#x2F;&#x
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Markdown/">
-                        <span class="chip bg-color">Markdown</span>
+                    <a href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/">
+                        <span class="chip bg-color">基础算法</span>
+                    </a>
+                    
+                    <a href="/tags/C/">
+                        <span class="chip bg-color">C++</span>
                     </a>
                     
                 </div>
