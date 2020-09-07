@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>算法 双指针算法</title>
+      <link href="/2020/09/07/%E7%AE%97%E6%B3%95-%E5%8F%8C%E6%8C%87%E9%92%88%E7%AE%97%E6%B3%95/"/>
+      <url>/2020/09/07/%E7%AE%97%E6%B3%95-%E5%8F%8C%E6%8C%87%E9%92%88%E7%AE%97%E6%B3%95/</url>
+      
+        <content type="html"><![CDATA[<p>双指针算法在我们平时的还很多例题里面都有涉及，比如归并排序里面，两个指针指向每一半的开头部分，通过对比大小向后移动。又比如在模拟栈里面，通过两个指针模拟栈的栈顶和栈底元素。也是属于一种双指针算法。</p><h1 id="双指针算法"><a href="#双指针算法" class="headerlink" title="双指针算法"></a>双指针算法</h1><h2 id="一-最长连续不重复子序列"><a href="#一-最长连续不重复子序列" class="headerlink" title="一.最长连续不重复子序列"></a>一.最长连续不重复子序列</h2><p><img src="https://img-blog.csdnimg.cn/20200907110030862.png" alt="最长连续不重复子序列"></p><pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include&lt;iostream&gt;using namespace std;const int N &#x3D; 100010;int q[N], p[N];&#x2F;&#x2F;p用来存放出现数字的字数 q用来存放数组int n, res;&#x2F;&#x2F;res是答案int main()&#123;    cin &gt;&gt; n;    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ )   cin &gt;&gt; q[i];    for(int l &#x3D; 1, r &#x3D; 1; r &lt;&#x3D; n; r ++)    &#123;        p[q[r]] ++;        while(l &lt; r &amp;&amp; p[q[r]] &gt; 1)    p[q[l ++]] --;        res &#x3D; max(res, r - l + 1);&#x2F;&#x2F;更新成最大值    &#125;    cout &lt;&lt; res;    return 0;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>通过两个指针l， r的依次移动，对于每个扫过去的数字，存储进p数组内。然后通过对p数组出现数字次数的判断，来判断是否存在一个不重复序列。</p><hr><h2 id="二、数组元素的目标和"><a href="#二、数组元素的目标和" class="headerlink" title="二、数组元素的目标和"></a>二、数组元素的目标和</h2><p><img src="https://img-blog.csdnimg.cn/20200907110046646.png" alt="数组元素的目标和"></p><pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;iostream&gt;using namespace std;const int N &#x3D; 100010;int n, m, x;int a[N], b[N];int main()&#123;    cin &gt;&gt; n &gt;&gt; m &gt;&gt; x;    for(int i &#x3D; 0; i &lt; n; i ++ )    cin &gt;&gt; a[i];    for(int i &#x3D; 0; i &lt; m; i ++ )    cin &gt;&gt; b[i];    for(int i &#x3D; 0, j &#x3D; m - 1; i &lt; n; i ++)    &#123;        while(j &gt;&#x3D; 0 &amp;&amp; a[i] + b[j] &gt; x)    j --;        if(j &gt;&#x3D; 0 &amp;&amp; a[i] + b[j] &#x3D;&#x3D; x)  cout &lt;&lt; i &lt;&lt; &#39; &#39; &lt;&lt; j &lt;&lt; endl;    &#125;    return 0;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>这是双指针算法的第二种形式，主要类似于归并排序里面的思想，在两个数组里面依次移动，本题目做了一些优化，主要是将第二个数组从后往前，减小了出错的机率。</p><hr>]]></content>
+      
+      
+      <categories>
+          
+          <category> 基础算法学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 基础算法 </tag>
+            
+            <tag> C++ </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>算法训练 前缀和与差分</title>
       <link href="/2020/08/27/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83-%E5%89%8D%E7%BC%80%E5%92%8C%E4%B8%8E%E5%B7%AE%E5%88%86/"/>
       <url>/2020/08/27/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83-%E5%89%8D%E7%BC%80%E5%92%8C%E4%B8%8E%E5%B7%AE%E5%88%86/</url>

@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="算法  排序, KQ的博客">
+    <meta name="keywords" content="算法 双指针算法, KQ的博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>算法  排序 | KQ的博客</title>
+    <title>算法 双指针算法 | KQ的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -308,12 +308,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">算法  排序</h1>
+                    <h1 class="description center-align post-title">算法 双指针算法</h1>
                 </div>
             </div>
         </div>
@@ -459,7 +459,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-08-23
+                    2020-09-07
                 </div>
                 
 
@@ -468,7 +468,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    555
+                    490
                 </div>
                 
 
@@ -485,85 +485,56 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>虽然在C++里面有他自己所对应的sort函数，可以非常方便的来进行数组的排序，但是可以手写一个排序也是我们所必须要掌握的，这里介绍快速排序和归并排序两种排序</p>
-<h1 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h1><p>下面我们介绍两种排序方式</p>
-<h2 id="一、快速排序"><a href="#一、快速排序" class="headerlink" title="一、快速排序"></a>一、快速排序</h2><pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;iostream&gt;
-
-using namespace std;
-
-const int N &#x3D; 100010;
-
-int q[N];
-
-void quick_sort(int q[], int l, int r)
-&#123;
-    if (l &gt;&#x3D; r) return;
-
-    int i &#x3D; l - 1, j &#x3D; r + 1, x &#x3D; q[l + r &gt;&gt; 1];
-    while (i &lt; j)
-    &#123;
-        do i ++ ; while (q[i] &lt; x);&#x2F;&#x2F;当找到比x小的停下
-        do j -- ; while (q[j] &gt; x);&#x2F;&#x2F;当找到比x大的停下
-        if (i &lt; j) swap(q[i], q[j]);&#x2F;&#x2F;两数交换
-    &#125;
-
-    quick_sort(q, l, j);
-    quick_sort(q, j + 1, r);
-&#125;
-
-int main()
-&#123;
-    int n;
-    scanf(&quot;%d&quot;, &amp;n);
-
-    for (int i &#x3D; 0; i &lt; n; i ++ ) scanf(&quot;%d&quot;, &amp;q[i]);
-
-    quick_sort(q, 0, n - 1);
-
-    for (int i &#x3D; 0; i &lt; n; i ++ ) printf(&quot;%d &quot;, q[i]);
-
-    return 0;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>本段代码通过多次将数组分为两份，来实现排序。</p>
-<hr>
-<h2 id="二、归并排序"><a href="#二、归并排序" class="headerlink" title="二、归并排序"></a>二、归并排序</h2><pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include&lt;iostream&gt;
+                <p>双指针算法在我们平时的还很多例题里面都有涉及，比如归并排序里面，两个指针指向每一半的开头部分，通过对比大小向后移动。又比如在模拟栈里面，通过两个指针模拟栈的栈顶和栈底元素。也是属于一种双指针算法。</p>
+<h1 id="双指针算法"><a href="#双指针算法" class="headerlink" title="双指针算法"></a>双指针算法</h1><h2 id="一-最长连续不重复子序列"><a href="#一-最长连续不重复子序列" class="headerlink" title="一.最长连续不重复子序列"></a>一.最长连续不重复子序列</h2><p><img src="https://img-blog.csdnimg.cn/20200907110030862.png" alt="最长连续不重复子序列"></p>
+<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include&lt;iostream&gt;
 
 using namespace std;
 const int N &#x3D; 100010;
-int q[N], p[N];
-int n;
+int q[N], p[N];&#x2F;&#x2F;p用来存放出现数字的字数 q用来存放数组
+int n, res;&#x2F;&#x2F;res是答案
 
-void msort(int l, int r)
-&#123;
-    if(l &gt;&#x3D; r)  return;
-
-    int mid &#x3D; (l + r) &#x2F; 2;
-    msort(l, mid), msort(mid + 1, r);&#x2F;&#x2F;分割成多个小的数组
-
-    int i &#x3D; l, j &#x3D; mid + 1, k &#x3D; 1;
-    while(i &lt;&#x3D; mid &amp;&amp; j &lt;&#x3D; r)
-    &#123;
-        if(q[i] &lt;&#x3D; q[j])    p[k ++] &#x3D; q[i ++];&#x2F;&#x2F;比较大小
-        if(q[i] &gt; q[j])     p[k ++] &#x3D; q[j ++];
-    &#125;
-
-    while(i &lt;&#x3D; mid) p[k ++] &#x3D; q[i ++];&#x2F;&#x2F;将没有塞进p数组的数字依次“丢进去”
-    while(j &lt;&#x3D; r)   p[k ++] &#x3D; q[j ++];
-
-    for(int i &#x3D; l, j &#x3D; 1; i &lt;&#x3D; r;)  q[i ++] &#x3D; p[j ++];
-&#125;
 int main()
 &#123;
     cin &gt;&gt; n;
     for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ )   cin &gt;&gt; q[i];
 
-    msort(1, n);
-    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ )   cout &lt;&lt; q[i] &lt;&lt; &#39; &#39;;
+    for(int l &#x3D; 1, r &#x3D; 1; r &lt;&#x3D; n; r ++)
+    &#123;
+        p[q[r]] ++;
+        while(l &lt; r &amp;&amp; p[q[r]] &gt; 1)    p[q[l ++]] --;
+        res &#x3D; max(res, r - l + 1);&#x2F;&#x2F;更新成最大值
+    &#125;
+    cout &lt;&lt; res;
     return 0;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>先递归依次将数组分为多个小数组，然后对于每个小数组来进行比较操作，并用一个p数组来存储结果，最后将p数组的值赋值给q数组来达到排序的目的。</p>
+<p>通过两个指针l， r的依次移动，对于每个扫过去的数字，存储进p数组内。然后通过对p数组出现数字次数的判断，来判断是否存在一个不重复序列。</p>
+<hr>
+<h2 id="二、数组元素的目标和"><a href="#二、数组元素的目标和" class="headerlink" title="二、数组元素的目标和"></a>二、数组元素的目标和</h2><p><img src="https://img-blog.csdnimg.cn/20200907110046646.png" alt="数组元素的目标和"></p>
+<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;iostream&gt;
+
+using namespace std;
+
+const int N &#x3D; 100010;
+
+int n, m, x;
+int a[N], b[N];
+int main()
+&#123;
+    cin &gt;&gt; n &gt;&gt; m &gt;&gt; x;
+    for(int i &#x3D; 0; i &lt; n; i ++ )    cin &gt;&gt; a[i];
+    for(int i &#x3D; 0; i &lt; m; i ++ )    cin &gt;&gt; b[i];
+
+    for(int i &#x3D; 0, j &#x3D; m - 1; i &lt; n; i ++)
+    &#123;
+        while(j &gt;&#x3D; 0 &amp;&amp; a[i] + b[j] &gt; x)    j --;
+        if(j &gt;&#x3D; 0 &amp;&amp; a[i] + b[j] &#x3D;&#x3D; x)  cout &lt;&lt; i &lt;&lt; &#39; &#39; &lt;&lt; j &lt;&lt; endl;
+    &#125;
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这是双指针算法的第二种形式，主要类似于归并排序里面的思想，在两个数组里面依次移动，本题目做了一些优化，主要是将第二个数组从后往前，减小了出错的机率。</p>
 <hr>
 
             </div>
@@ -590,7 +561,7 @@ int main()
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://wustuzi.github.io/2020/08/23/%E7%AE%97%E6%B3%95-%E6%8E%92%E5%BA%8F/">http://wustuzi.github.io/2020/08/23/%E7%AE%97%E6%B3%95-%E6%8E%92%E5%BA%8F/</a>
+                    <a href="http://wustuzi.github.io/2020/09/07/%E7%AE%97%E6%B3%95-%E5%8F%8C%E6%8C%87%E9%92%88%E7%AE%97%E6%B3%95/">http://wustuzi.github.io/2020/09/07/%E7%AE%97%E6%B3%95-%E5%8F%8C%E6%8C%87%E9%92%88%E7%AE%97%E6%B3%95/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -804,7 +775,7 @@ int main()
         repo: 'wustuzi.github.io',
         owner: 'wustuzi',
         admin: "wustuzi",
-        id: '2020-08-23T20-25-26',
+        id: '2020-09-07T10-50-25',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -828,33 +799,91 @@ int main()
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/08/23/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83-%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/">
+                <a href="/2020/09/07/%E7%AE%97%E6%B3%95-%E5%8F%8C%E6%8C%87%E9%92%88%E7%AE%97%E6%B3%95/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="算法训练  归并排序">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="算法 双指针算法">
                         
-                        <span class="card-title">算法训练  归并排序</span>
+                        <span class="card-title">算法 双指针算法</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            在学习了快排和归并排序的模板之后，快排在我们的题目中基本是不会出现的，出现的一般都是归并排序，在这里我记录几个训练过觉得比较有意义的归并排序的题目（题目均源自：洛谷）
-
-归并排序题目一、最接近神的人原题链接
-题解：
-#include &lt
+                            双指针算法在我们平时的还很多例题里面都有涉及，比如归并排序里面，两个指针指向每一半的开头部分，通过对比大小向后移动。又比如在模拟栈里面，通过两个指针模拟栈的栈顶和栈底元素。也是属于一种双指针算法。
+双指针算法一.最长连续不重复子序列
+#in
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-08-23
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-07
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    基础算法学习
+                                </a>
+                            
+                            
                         </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/">
+                        <span class="chip bg-color">基础算法</span>
+                    </a>
+                    
+                    <a href="/tags/C/">
+                        <span class="chip bg-color">C++</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/08/27/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83-%E5%89%8D%E7%BC%80%E5%92%8C%E4%B8%8E%E5%B7%AE%E5%88%86/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="算法训练 前缀和与差分">
+                        
+                        <span class="card-title">算法训练 前缀和与差分</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            前缀和和差分问题在解决两类分别不同的问题时作用非常大，我们可以具体看几个例题，加深对于前缀和与差分的理解。
+前缀和与差分训练1.前缀和一、取石子
+题解：
+#include&lt;iostream&gt;
+
+using namespace s
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-27
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -876,56 +905,6 @@ int main()
                     
                     <a href="/tags/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83/">
                         <span class="chip bg-color">算法训练</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/08/22/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="Markdown基本语法">
-                        
-                        <span class="card-title">Markdown基本语法</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            在我们写博客的过程中，熟练掌握markdown语法，常常会使得自己的办事效率有事半功倍的效果，所以掌握markdown语法，是我们写博客的第一步，也是最基础重要的一步。
-Markdown快速入门（typora）1.代码块：&#x2F;&#x
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-22
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Markdown%E5%85%A5%E9%97%A8/" class="post-category">
-                                    Markdown入门
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Markdown/">
-                        <span class="chip bg-color">Markdown</span>
                     </a>
                     
                 </div>
