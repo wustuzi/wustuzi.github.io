@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>算法 位运算</title>
+      <link href="/2020/09/08/%E7%AE%97%E6%B3%95-%E4%BD%8D%E8%BF%90%E7%AE%97/"/>
+      <url>/2020/09/08/%E7%AE%97%E6%B3%95-%E4%BD%8D%E8%BF%90%E7%AE%97/</url>
+      
+        <content type="html"><![CDATA[<p>位运算在某些特定的题目里面会有涉及，可以在较快的时间内求解一些特殊的问题，比如求1或者0，在二进制里面有非常特殊的运用。</p><h1 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h1><h2 id="一、二进制中1的个数"><a href="#一、二进制中1的个数" class="headerlink" title="一、二进制中1的个数"></a>一、二进制中1的个数</h2><p><img src="https://img-blog.csdnimg.cn/20200908230522849.png" alt="二进制中1的个数"></p><pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;iostream&gt;using namespace std;const int N &#x3D; 100010;int a[N];int main()&#123;    int m;    cin &gt;&gt; m;    while(m --)    &#123;        int x, sum &#x3D; 0;        cin &gt;&gt; x;        for(int i &#x3D; x; i; i -&#x3D; i &amp; -i)  sum ++;        cout &lt;&lt; sum &lt;&lt; &#39; &#39;;    &#125;    return 0;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>lobit函数的运用是位运算里面最本质的地方</p><pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">int lowbit(int x) &#123;    return x &amp; (-x);&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><p>主要把lobit函数的本质弄清楚，位运算的题目就可以理解。</p><hr><p>由于本主题题目较少，有水文章的嫌疑</p><p>但是没办法，我确实在水文章，后面几天多更新一点。</p><hr>]]></content>
+      
+      
+      <categories>
+          
+          <category> 基础算法学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 基础算法 </tag>
+            
+            <tag> C ++ </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>算法 双指针算法</title>
       <link href="/2020/09/07/%E7%AE%97%E6%B3%95-%E5%8F%8C%E6%8C%87%E9%92%88%E7%AE%97%E6%B3%95/"/>
       <url>/2020/09/07/%E7%AE%97%E6%B3%95-%E5%8F%8C%E6%8C%87%E9%92%88%E7%AE%97%E6%B3%95/</url>

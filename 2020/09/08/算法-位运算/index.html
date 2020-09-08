@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="算法 高精度, KQ的博客">
+    <meta name="keywords" content="算法 位运算, KQ的博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>算法 高精度 | KQ的博客</title>
+    <title>算法 位运算 | KQ的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -308,12 +308,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">算法 高精度</h1>
+                    <h1 class="description center-align post-title">算法 位运算</h1>
                 </div>
             </div>
         </div>
@@ -435,7 +435,7 @@
                             </a>
                         
                             <a href="/tags/C/">
-                                <span class="chip bg-color">C++</span>
+                                <span class="chip bg-color">C ++</span>
                             </a>
                         
                     </div>
@@ -459,7 +459,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-08-24
+                    2020-09-08
                 </div>
                 
 
@@ -468,14 +468,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.1k
+                    215
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    1 分
                 </div>
                 
 
@@ -485,171 +485,41 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>我们这里所表示的高精度，大部分都是将大整数存储在数组中，来通过加减乘除基本运算法则，来对数组中的每一位数字来进行加减乘除，从而达到大整数加减乘除的目的。</p>
-<h1 id="高精度加减乘除"><a href="#高精度加减乘除" class="headerlink" title="高精度加减乘除"></a>高精度加减乘除</h1><h2 id="一、高精度加法"><a href="#一、高精度加法" class="headerlink" title="一、高精度加法"></a>一、高精度加法</h2><p>输入：两个大整数     输出：大整数相加的结果</p>
+                <p>位运算在某些特定的题目里面会有涉及，可以在较快的时间内求解一些特殊的问题，比如求1或者0，在二进制里面有非常特殊的运用。</p>
+<h1 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h1><h2 id="一、二进制中1的个数"><a href="#一、二进制中1的个数" class="headerlink" title="一、二进制中1的个数"></a>一、二进制中1的个数</h2><p><img src="https://img-blog.csdnimg.cn/20200908230522849.png" alt="二进制中1的个数"></p>
 <pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;iostream&gt;
-#include &lt;vector&gt;
 
 using namespace std;
 
-vector &lt;int&gt; add(vector&lt;int&gt; &amp;A, vector&lt;int&gt; &amp;B)
-&#123;
-    if(A.size() &lt; B.size()) return add(B, A);
+const int N &#x3D; 100010;
 
-    vector&lt;int&gt; C;
-    int t &#x3D; 0;
-    for(int i &#x3D; 0; i &lt; A.size(); i ++ )
-    &#123;
-        t +&#x3D; A[i];
-        if(i &lt; B.size())    t +&#x3D; B[i];
-        C.push_back(t % 10);
-        t &#x2F;&#x3D; 10; 
-    &#125;
-    if(t)   C.push_back(t);
-    return C;
-&#125;
+int a[N];
 int main()
 &#123;
-    string a, b;
-    vector&lt;int&gt; A, B;
-    cin &gt;&gt; a &gt;&gt; b;
-    for(int i &#x3D; a.size() - 1; i &gt;&#x3D; 0; i --)    A.push_back(a[i] - &#39;0&#39;);
-    for(int i &#x3D; b.size() - 1; i &gt;&#x3D; 0; i --)    B.push_back(b[i] - &#39;0&#39;);
+    int m;
+    cin &gt;&gt; m;
+    while(m --)
+    &#123;
+        int x, sum &#x3D; 0;
+        cin &gt;&gt; x;
 
-    auto C &#x3D; add(A, B) ;
+        for(int i &#x3D; x; i; i -&#x3D; i &amp; -i)  sum ++;
 
-    for(int i &#x3D; C.size() - 1; i &gt;&#x3D; 0; i --) cout &lt;&lt; C[i];
-    cout &lt;&lt; endl;
-
+        cout &lt;&lt; sum &lt;&lt; &#39; &#39;;
+    &#125;
     return 0;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>本题同时通过vector容器，节省了空间</p>
+<p>lobit函数的运用是位运算里面最本质的地方</p>
+<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">int lowbit(int x) 
+&#123;
+    return x &amp; (-x);
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>主要把lobit函数的本质弄清楚，位运算的题目就可以理解。</p>
 <hr>
-<h2 id="二、高精度减法"><a href="#二、高精度减法" class="headerlink" title="二、高精度减法"></a>二、高精度减法</h2><p>输入：两个大整数，大小顺序无要求    输出：第一个数减去第二个数</p>
-<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;iostream&gt;
-#include &lt;vector&gt;
-
-using namespace std;
-
-bool cmp(vector&lt;int&gt; &amp;A, vector&lt;int&gt; &amp;B)
-&#123;
-    if (A.size() !&#x3D; B.size()) return A.size() &gt; B.size();
-
-    for (int i &#x3D; A.size() - 1; i &gt;&#x3D; 0; i -- )
-        if (A[i] !&#x3D; B[i])
-            return A[i] &gt; B[i];
-
-    return true;
-&#125;
-
-vector&lt;int&gt; sub(vector&lt;int&gt; &amp;A, vector&lt;int&gt; &amp;B)
-&#123;
-    vector&lt;int&gt; C;
-    for (int i &#x3D; 0, t &#x3D; 0; i &lt; A.size(); i ++ )
-    &#123;
-        t &#x3D; A[i] - t;
-        if (i &lt; B.size()) t -&#x3D; B[i];
-        C.push_back((t + 10) % 10);
-        if (t &lt; 0) t &#x3D; 1;
-        else t &#x3D; 0;
-    &#125;
-
-    while (C.size() &gt; 1 &amp;&amp; C.back() &#x3D;&#x3D; 0) C.pop_back();
-    return C;
-&#125;
-
-int main()
-&#123;
-    string a, b;
-    vector&lt;int&gt; A, B;
-    cin &gt;&gt; a &gt;&gt; b;
-    for (int i &#x3D; a.size() - 1; i &gt;&#x3D; 0; i -- ) A.push_back(a[i] - &#39;0&#39;);
-    for (int i &#x3D; b.size() - 1; i &gt;&#x3D; 0; i -- ) B.push_back(b[i] - &#39;0&#39;);
-
-    vector&lt;int&gt; C;
-
-    if (cmp(A, B)) C &#x3D; sub(A, B);
-    else C &#x3D; sub(B, A), cout &lt;&lt; &#39;-&#39;;
-
-    for (int i &#x3D; C.size() - 1; i &gt;&#x3D; 0; i -- ) cout &lt;&lt; C[i];
-    cout &lt;&lt; endl;
-
-    return 0;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>本题的思路和大整数加法类似，唯一需要注意的是，当二者大小顺序相反时，即应当输出负数时，应该进行判断。 A-B &lt; 0, -(B-A)就是结果</p>
-<hr>
-<h2 id="三、高精度乘法"><a href="#三、高精度乘法" class="headerlink" title="三、高精度乘法"></a>三、高精度乘法</h2><p>输入：一个大整数和一个小整数    输出：两数相乘的结果</p>
-<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;iostream&gt;
-#include &lt;vector&gt;
-
-using namespace std;
-
-vector&lt;int&gt; mul(vector&lt;int&gt; &amp;A, int b)
-&#123;
-    vector&lt;int&gt; C;
-    int t &#x3D; 0;
-    for(int i &#x3D; 0; i &lt; A.size(); i ++)
-    &#123;
-        if(i &lt; A.size()) t +&#x3D; A[i] * b;
-        C.push_back(t % 10);
-        t &#x2F;&#x3D; 10;
-    &#125;
-    if(t !&#x3D; 0)   C.push_back(t);
-    while (C.size() &gt; 1 &amp;&amp; C.back() &#x3D;&#x3D; 0) C.pop_back();
-
-    return C;
-&#125;
-int main()
-&#123;
-    int b;
-    string a;
-    cin &gt;&gt; a &gt;&gt; b;
-    vector&lt;int&gt; A;
-    for(int i &#x3D; a.size() - 1; i &gt;&#x3D; 0; i --) A.push_back(a[i] - &#39;0&#39;);
-    auto C &#x3D; mul(A, b);
-    for(int i &#x3D; C.size() - 1; i &gt;&#x3D; 0; i --) cout &lt;&lt; C[i];
-    cout &lt;&lt; endl;
-    return 0;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>开头用string存储大整数，用小整数来乘以大整数的每一位，然后根据所占的位数来进行进位。</p>
-<hr>
-<h2 id="四、高精度除法"><a href="#四、高精度除法" class="headerlink" title="四、高精度除法"></a>四、高精度除法</h2><p>输入：除数 被除数（不为0）    输出：除数除以被除数的结果</p>
-<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include&lt;iostream&gt;
-#include&lt;vector&gt;
-#include &lt;algorithm&gt;
-
-using namespace std;
-vector&lt;int&gt; div(vector&lt;int&gt; &amp;A, int b, int &amp;r)
-&#123;
-    vector&lt;int&gt; C;
-    r &#x3D; 0;
-    for(int i &#x3D; A.size() - 1; i &gt;&#x3D; 0; i --)
-    &#123;
-        r &#x3D; r * 10 + A[i];&#x2F;&#x2F;借位
-        C.push_back(r &#x2F; b);
-        r &#x3D; r % b;
-    &#125;
-    reverse(C.begin(), C.end());
-    while(C.size() &gt; 1 &amp;&amp; C.back() &#x3D;&#x3D; 0) C.pop_back();
-    return C;
-&#125;
-int main()
-&#123;
-    int b, r;
-    string a;
-    cin &gt;&gt; a &gt;&gt; b;
-    vector&lt;int&gt; A;
-    for(int i &#x3D; a.size() - 1; i &gt;&#x3D; 0; i --) A.push_back(a[i] - &#39;0&#39;);
-    auto C &#x3D; div(A, b, r);
-    for(int i &#x3D; C.size() - 1; i &gt;&#x3D; 0; i --) cout &lt;&lt; C[i];
-    cout &lt;&lt; endl &lt;&lt; r &lt;&lt; endl;
-    return 0;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>里面比较重要的是对于“借位”思想的代码操作，值得仔细琢磨</p>
+<p>由于本主题题目较少，有水文章的嫌疑</p>
+<p>但是没办法，我确实在水文章，后面几天多更新一点。</p>
 <hr>
 
             </div>
@@ -676,7 +546,7 @@ int main()
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://wustuzi.github.io/2020/08/24/%E7%AE%97%E6%B3%95-%E9%AB%98%E7%B2%BE%E5%BA%A6/">http://wustuzi.github.io/2020/08/24/%E7%AE%97%E6%B3%95-%E9%AB%98%E7%B2%BE%E5%BA%A6/</a>
+                    <a href="http://wustuzi.github.io/2020/09/08/%E7%AE%97%E6%B3%95-%E4%BD%8D%E8%BF%90%E7%AE%97/">http://wustuzi.github.io/2020/09/08/%E7%AE%97%E6%B3%95-%E4%BD%8D%E8%BF%90%E7%AE%97/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -719,7 +589,7 @@ int main()
                                 </a>
                             
                                 <a href="/tags/C/">
-                                    <span class="chip bg-color">C++</span>
+                                    <span class="chip bg-color">C ++</span>
                                 </a>
                             
                         </div>
@@ -890,7 +760,7 @@ int main()
         repo: 'wustuzi.github.io',
         owner: 'wustuzi',
         admin: "wustuzi",
-        id: '2020-08-24T16-46-15',
+        id: '2020-09-08T23-02-33',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -914,34 +784,34 @@ int main()
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/08/24/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83-%E9%AB%98%E7%B2%BE%E5%BA%A6/">
+                <a href="/2020/09/08/%E7%AE%97%E6%B3%95-%E4%BD%8D%E8%BF%90%E7%AE%97/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="算法训练 高精度">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="算法 位运算">
                         
-                        <span class="card-title">算法训练 高精度</span>
+                        <span class="card-title">算法 位运算</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            高精度里面，最根本的就是学会用数组来存储数据，灵活运用数组，将可以很好的掌握所有类型的高精度题目
-算法训练 高精度一、高精度乘法（两个大整数）
-题解：
+                            位运算在某些特定的题目里面会有涉及，可以在较快的时间内求解一些特殊的问题，比如求1或者0，在二进制里面有非常特殊的运用。
+位运算一、二进制中1的个数
 #include &lt;iostream&gt;
 
-using namespace s
+using namespace st
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-08-24
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-08
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -954,15 +824,16 @@ using namespace s
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/C/">
-                        <span class="chip bg-color">C++</span>
+                    <a href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/">
+                        <span class="chip bg-color">基础算法</span>
                     </a>
                     
-                    <a href="/tags/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83/">
-                        <span class="chip bg-color">算法训练</span>
+                    <a href="/tags/C/">
+                        <span class="chip bg-color">C ++</span>
                     </a>
                     
                 </div>
@@ -976,28 +847,26 @@ using namespace s
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/08/23/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83-%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/">
+                <a href="/2020/09/07/%E7%AE%97%E6%B3%95-%E5%8F%8C%E6%8C%87%E9%92%88%E7%AE%97%E6%B3%95/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="算法训练  归并排序">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="算法 双指针算法">
                         
-                        <span class="card-title">算法训练  归并排序</span>
+                        <span class="card-title">算法 双指针算法</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            在学习了快排和归并排序的模板之后，快排在我们的题目中基本是不会出现的，出现的一般都是归并排序，在这里我记录几个训练过觉得比较有意义的归并排序的题目（题目均源自：洛谷）
-
-归并排序题目一、最接近神的人原题链接
-题解：
-#include &lt
+                            双指针算法在我们平时的还很多例题里面都有涉及，比如归并排序里面，两个指针指向每一半的开头部分，通过对比大小向后移动。又比如在模拟栈里面，通过两个指针模拟栈的栈顶和栈底元素。也是属于一种双指针算法。
+双指针算法一.最长连续不重复子序列
+#in
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-23
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-07
                             </span>
                         <span class="publish-author">
                             
@@ -1014,12 +883,12 @@ using namespace s
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/C/">
-                        <span class="chip bg-color">C++</span>
+                    <a href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/">
+                        <span class="chip bg-color">基础算法</span>
                     </a>
                     
-                    <a href="/tags/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83/">
-                        <span class="chip bg-color">算法训练</span>
+                    <a href="/tags/C/">
+                        <span class="chip bg-color">C++</span>
                     </a>
                     
                 </div>
