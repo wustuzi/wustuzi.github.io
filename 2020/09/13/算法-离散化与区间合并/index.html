@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="算法  前缀和与差分, KQ的博客">
+    <meta name="keywords" content="算法 离散化与区间合并, KQ的博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>算法  前缀和与差分 | KQ的博客</title>
+    <title>算法 离散化与区间合并 | KQ的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -308,12 +308,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">算法  前缀和与差分</h1>
+                    <h1 class="description center-align post-title">算法 离散化与区间合并</h1>
                 </div>
             </div>
         </div>
@@ -459,7 +459,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-08-26
+                    2020-09-13
                 </div>
                 
 
@@ -468,14 +468,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    959
+                    101
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    1 分
                 </div>
                 
 
@@ -485,151 +485,10 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>前缀和与差分问题在解决某一些特定问题的时候非常好用，比如在需要快速求解某一段区间内的总和时，只需要动用前缀和数组用a[n] - a[m]就可以快速求解，降低时间复杂度为o(1)。而差分是前缀和的一个逆运算，当需要给区间内每一个数字进行加减运算时，我们只需要对其差分数组进行几个数字的操作，再对其求前缀和即可。(题目源于ACwing，侵删)</p>
-<h1 id="前缀和与差分"><a href="#前缀和与差分" class="headerlink" title="前缀和与差分"></a>前缀和与差分</h1><h2 id="1-前缀和"><a href="#1-前缀和" class="headerlink" title="1.前缀和"></a>1.前缀和</h2><h3 id="一、一维前缀和"><a href="#一、一维前缀和" class="headerlink" title="一、一维前缀和"></a>一、一维前缀和</h3><p><img src="https://img-blog.csdnimg.cn/20200826130610110.png" alt="一维前缀和"></p>
-<p>题解：</p>
-<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include&lt;iostream&gt;
+                <p>离散化是一种很特殊的哈希方式，将一个较大区间的数字按照一定的规律进行缩小，从而达到方便1快速访问和查找的效果；区间合并，顾名思义，就是把有重复部分的区间合并成为一个区间，避免访问中的重复询问。</p>
+<h1 id="离散化与区间合并"><a href="#离散化与区间合并" class="headerlink" title="离散化与区间合并"></a>离散化与区间合并</h1><h2 id="一、离散化"><a href="#一、离散化" class="headerlink" title="一、离散化"></a>一、离散化</h2><p><img src="https://img-blog.csdnimg.cn/20200913112937545.png" alt="离散化"></p>
+<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++"><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-using namespace std;
-const int N &#x3D; 1000010;
-int a[N];
-int l, r, n, q;
-
-int main()
-&#123;
-    cin &gt;&gt; n &gt;&gt; q;
-    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ )
-    &#123;
-        cin &gt;&gt; a[i];
-        a[i] +&#x3D; a[i - 1];
-    &#125;
-
-    while(q -- )
-    &#123;
-        cin &gt;&gt; l &gt;&gt; r;
-        cout &lt;&lt; a[r] - a[l - 1] &lt;&lt; endl;
-    &#125;
-    return 0;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>思路较为简单，简单介绍了一下前缀和的最基本应用。</p>
-<hr>
-<h3 id="二、二维前缀和-子矩阵的和"><a href="#二、二维前缀和-子矩阵的和" class="headerlink" title="二、二维前缀和(子矩阵的和)"></a>二、二维前缀和(子矩阵的和)</h3><p><img src="https://img-blog.csdnimg.cn/20200826130939800.png" alt="子矩阵的和"></p>
-<p>题解：</p>
-<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include&lt;iostream&gt;
-
-using namespace std;
-const int N &#x3D; 1010;
-int a[N][N];
-int n, m, q, x1, x2, y1, y2;
-
-int main()
-&#123;
-    cin &gt;&gt; n &gt;&gt; m &gt;&gt; q;
-    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ )
-    &#123;
-        for(int j &#x3D; 1; j &lt;&#x3D; m; j ++ )
-        &#123;
-            cin &gt;&gt; a[i][j];
-            a[i][j] +&#x3D; a[i - 1][j] + a[i][j - 1] - a[i - 1][j - 1];
-        &#125;
-    &#125;
-
-    while(q -- )
-    &#123;
-        cin &gt;&gt; x1 &gt;&gt; y1 &gt;&gt; x2 &gt;&gt; y2;
-        cout &lt;&lt; a[x2][y2] - a[x1 - 1][y2] - a[x2][y1 - 1] + a[x1 - 1][y1 - 1] &lt;&lt;endl;
-    &#125;
-    return 0;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>这个形式需要比较好的想象力，知道在什么时候应该减去或者加上哪个部分，并转换成相应的代数形式。</p>
-<hr>
-<h2 id="2-差分"><a href="#2-差分" class="headerlink" title="2.差分"></a>2.差分</h2><h3 id="一、差分"><a href="#一、差分" class="headerlink" title="一、差分"></a>一、差分</h3><p><img src="https://img-blog.csdnimg.cn/202008261312395.png" alt="差分"></p>
-<p>题解：</p>
-<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include&lt;iostream&gt;
-
-using namespace std;
-int n, m, l, r, c;
-const int N &#x3D; 100010;
-int q[N], p[N];
-
-int main()
-&#123;
-    cin &gt;&gt; n &gt;&gt; m;
-    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ )   cin &gt;&gt; q[i];&#x2F;&#x2F;输入矩阵
-
-    while(m -- )
-    &#123;
-        cin &gt;&gt; l &gt;&gt; r &gt;&gt; c;
-        p[l] +&#x3D; c;
-        p[r + 1] -&#x3D; c;&#x2F;&#x2F;转换成差分矩阵进行运算
-    &#125;
-    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ )   p[i] +&#x3D; p[i - 1];&#x2F;&#x2F;差分矩阵的前缀和矩阵就是原来矩阵
-    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ )
-    &#123;
-
-           cout &lt;&lt; q[i] + p[i] &lt;&lt; &#39; &#39;;
-    &#125;
-    return 0;
-&#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>通过本题可以看出来差分，对于某一段的固定插入某一个数会显得很方便，只需要改变前面和后面一个即可。</p>
-<hr>
-<h3 id="二、差分矩阵"><a href="#二、差分矩阵" class="headerlink" title="二、差分矩阵"></a>二、差分矩阵</h3><p><img src="https://img-blog.csdnimg.cn/20200826131551227.png" alt="差分矩阵"></p>
-<p>题解：</p>
-<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;iostream&gt;
-
-using namespace std;
-
-const int N &#x3D; 1010;
-
-int n, m, q;
-int a[N][N], b[N][N];
-
-void insert(int x1, int y1, int x2, int y2, int c)
-&#123;
-    b[x1][y1] +&#x3D; c;
-    b[x2 + 1][y1] -&#x3D; c;
-    b[x1][y2 + 1] -&#x3D; c;
-    b[x2 + 1][y2 + 1] +&#x3D; c;
-&#125;
-
-int main()
-&#123;
-    scanf(&quot;%d%d%d&quot;, &amp;n, &amp;m, &amp;q);
-
-    for (int i &#x3D; 1; i &lt;&#x3D; n; i ++ )
-        for (int j &#x3D; 1; j &lt;&#x3D; m; j ++ )
-            scanf(&quot;%d&quot;, &amp;a[i][j]);
-
-    for (int i &#x3D; 1; i &lt;&#x3D; n; i ++ )
-        for (int j &#x3D; 1; j &lt;&#x3D; m; j ++ )
-            insert(i, j, i, j, a[i][j]);
-
-    while (q -- )
-    &#123;
-        int x1, y1, x2, y2, c;
-        cin &gt;&gt; x1 &gt;&gt; y1 &gt;&gt; x2 &gt;&gt; y2 &gt;&gt; c;
-        insert(x1, y1, x2, y2, c);
-    &#125;
-
-    for (int i &#x3D; 1; i &lt;&#x3D; n; i ++ )
-        for (int j &#x3D; 1; j &lt;&#x3D; m; j ++ )
-            b[i][j] +&#x3D; b[i - 1][j] + b[i][j - 1] - b[i - 1][j - 1];
-
-    for (int i &#x3D; 1; i &lt;&#x3D; n; i ++ )
-    &#123;
-        for (int j &#x3D; 1; j &lt;&#x3D; m; j ++ ) printf(&quot;%d &quot;, b[i][j]);
-        puts(&quot;&quot;);
-    &#125;
-
-    return 0;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>差分矩阵里面，insert函数是非常重要的一点，insert可以在差分矩阵中将我们所需要进行的操作进行转换，最后再求他的差分矩阵的前缀和即可。关于b函数的理解需要加深。</p>
-<hr>
 
             </div>
             <hr/>
@@ -655,7 +514,7 @@ int main()
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://wustuzi.github.io/2020/08/26/%E7%AE%97%E6%B3%95-%E5%89%8D%E7%BC%80%E5%92%8C%E4%B8%8E%E5%B7%AE%E5%88%86/">http://wustuzi.github.io/2020/08/26/%E7%AE%97%E6%B3%95-%E5%89%8D%E7%BC%80%E5%92%8C%E4%B8%8E%E5%B7%AE%E5%88%86/</a>
+                    <a href="http://wustuzi.github.io/2020/09/13/%E7%AE%97%E6%B3%95-%E7%A6%BB%E6%95%A3%E5%8C%96%E4%B8%8E%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6/">http://wustuzi.github.io/2020/09/13/%E7%AE%97%E6%B3%95-%E7%A6%BB%E6%95%A3%E5%8C%96%E4%B8%8E%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -869,7 +728,7 @@ int main()
         repo: 'wustuzi.github.io',
         owner: 'wustuzi',
         admin: "wustuzi",
-        id: '2020-08-26T10-07-38',
+        id: '2020-09-13T11-20-58',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -893,34 +752,34 @@ int main()
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/08/27/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83-%E5%89%8D%E7%BC%80%E5%92%8C%E4%B8%8E%E5%B7%AE%E5%88%86/">
+                <a href="/2020/09/13/%E7%AE%97%E6%B3%95-%E7%A6%BB%E6%95%A3%E5%8C%96%E4%B8%8E%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="算法训练 前缀和与差分">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="算法 离散化与区间合并">
                         
-                        <span class="card-title">算法训练 前缀和与差分</span>
+                        <span class="card-title">算法 离散化与区间合并</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            前缀和和差分问题在解决两类分别不同的问题时作用非常大，我们可以具体看几个例题，加深对于前缀和与差分的理解。
-前缀和与差分训练1.前缀和一、取石子
-题解：
-#include&lt;iostream&gt;
+                            离散化是一种很特殊的哈希方式，将一个较大区间的数字按照一定的规律进行缩小，从而达到方便1快速访问和查找的效果；区间合并，顾名思义，就是把有重复部分的区间合并成为一个区间，避免访问中的重复询问。
+离散化与区间合并一、离散化
 
-using namespace s
+
+
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-08-27
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-13
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -933,15 +792,16 @@ using namespace s
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/C/">
-                        <span class="chip bg-color">C++</span>
+                    <a href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/">
+                        <span class="chip bg-color">基础算法</span>
                     </a>
                     
-                    <a href="/tags/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83/">
-                        <span class="chip bg-color">算法训练</span>
+                    <a href="/tags/C/">
+                        <span class="chip bg-color">C++</span>
                     </a>
                     
                 </div>
@@ -955,28 +815,28 @@ using namespace s
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/08/25/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83-%E4%BA%8C%E5%88%86/">
+                <a href="/2020/09/08/%E7%AE%97%E6%B3%95-%E4%BD%8D%E8%BF%90%E7%AE%97/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="算法训练 二分">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="算法 位运算">
                         
-                        <span class="card-title">算法训练 二分</span>
+                        <span class="card-title">算法 位运算</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            在基本掌握了二分的概念之后，如何在题目中，对应不同的题目，灵活使用，灵活改变while里面if的形式，是我们灵活解决二分题目的关键
-算法训练 二分一、砍树
-题解：
-#include&lt;iostream&gt;
-#include&lt;a
+                            位运算在某些特定的题目里面会有涉及，可以在较快的时间内求解一些特殊的问题，比如求1或者0，在二进制里面有非常特殊的运用。
+位运算一、二进制中1的个数
+#include &lt;iostream&gt;
+
+using namespace st
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-25
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-08
                             </span>
                         <span class="publish-author">
                             
@@ -993,12 +853,12 @@ using namespace s
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/C/">
-                        <span class="chip bg-color">C++</span>
+                    <a href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/">
+                        <span class="chip bg-color">基础算法</span>
                     </a>
                     
-                    <a href="/tags/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83/">
-                        <span class="chip bg-color">算法训练</span>
+                    <a href="/tags/C/">
+                        <span class="chip bg-color">C ++</span>
                     </a>
                     
                 </div>

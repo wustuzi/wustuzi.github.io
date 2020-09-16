@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>算法 离散化与区间合并</title>
+      <link href="/2020/09/13/%E7%AE%97%E6%B3%95-%E7%A6%BB%E6%95%A3%E5%8C%96%E4%B8%8E%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6/"/>
+      <url>/2020/09/13/%E7%AE%97%E6%B3%95-%E7%A6%BB%E6%95%A3%E5%8C%96%E4%B8%8E%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6/</url>
+      
+        <content type="html"><![CDATA[<p>离散化是一种很特殊的哈希方式，将一个较大区间的数字按照一定的规律进行缩小，从而达到方便1快速访问和查找的效果；区间合并，顾名思义，就是把有重复部分的区间合并成为一个区间，避免访问中的重复询问。</p><h1 id="离散化与区间合并"><a href="#离散化与区间合并" class="headerlink" title="离散化与区间合并"></a>离散化与区间合并</h1><h2 id="一、离散化"><a href="#一、离散化" class="headerlink" title="一、离散化"></a>一、离散化</h2><p><img src="https://img-blog.csdnimg.cn/20200913112937545.png" alt="离散化"></p><pre class="line-numbers language-C++" data-language="C++"><code class="language-C++"><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 基础算法学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 基础算法 </tag>
+            
+            <tag> C++ </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>算法 位运算</title>
       <link href="/2020/09/08/%E7%AE%97%E6%B3%95-%E4%BD%8D%E8%BF%90%E7%AE%97/"/>
       <url>/2020/09/08/%E7%AE%97%E6%B3%95-%E4%BD%8D%E8%BF%90%E7%AE%97/</url>
