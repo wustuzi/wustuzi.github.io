@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="算法 双指针算法, KQ的博客">
+    <meta name="keywords" content="算法训练 离散化与区间合并, KQ的博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>算法 双指针算法 | KQ的博客</title>
+    <title>算法训练 离散化与区间合并 | KQ的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -308,12 +308,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">算法 双指针算法</h1>
+                    <h1 class="description center-align post-title">算法训练 离散化与区间合并</h1>
                 </div>
             </div>
         </div>
@@ -430,12 +430,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/">
-                                <span class="chip bg-color">基础算法</span>
-                            </a>
-                        
                             <a href="/tags/C/">
                                 <span class="chip bg-color">C++</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83/">
+                                <span class="chip bg-color">算法训练</span>
                             </a>
                         
                     </div>
@@ -459,7 +459,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-09-07
+                    2020-09-24
                 </div>
                 
 
@@ -468,14 +468,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    490
+                    282
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    1 分
                 </div>
                 
 
@@ -485,57 +485,56 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>双指针算法在我们平时的还很多例题里面都有涉及，比如归并排序里面，两个指针指向每一半的开头部分，通过对比大小向后移动。又比如在模拟栈里面，通过两个指针模拟栈的栈顶和栈底元素。也是属于一种双指针算法。</p>
-<h1 id="双指针算法"><a href="#双指针算法" class="headerlink" title="双指针算法"></a>双指针算法</h1><h2 id="一-最长连续不重复子序列"><a href="#一-最长连续不重复子序列" class="headerlink" title="一.最长连续不重复子序列"></a>一.最长连续不重复子序列</h2><p><img src="https://img-blog.csdnimg.cn/20200907110030862.png" alt="最长连续不重复子序列"></p>
+                <p>离散化与区间合并属于一系列特殊的哈希方式，主要作用是将一个很长的数组对应到相邻的位置上面 区间合并可以快速解决一些特定的问题。</p>
+<h2 id="火烧赤壁"><a href="#火烧赤壁" class="headerlink" title="火烧赤壁"></a>火烧赤壁</h2><p><img src="https://img-blog.csdnimg.cn/20200924151014179.png" alt="火烧赤壁"></p>
 <pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include&lt;iostream&gt;
-
+#include&lt;algorithm&gt;
 using namespace std;
-const int N &#x3D; 100010;
-int q[N], p[N];&#x2F;&#x2F;p用来存放出现数字的字数 q用来存放数组
-int n, res;&#x2F;&#x2F;res是答案
+const int N &#x3D; 40100, M &#x3D; 20100;
+int a[M], b[M];&#x2F;&#x2F; a存放起点 b存放终点
+int k;
+long n &#x3D; 1, m &#x3D; 1, ans;
+long c[N];
+bool flag[40100];
 
+inline long find(long key)&#x2F;&#x2F;找原来位置
+&#123;
+    for(int i &#x3D; 1;i &lt;&#x3D; m; i ++ )
+    &#123;
+        if(c[i] &#x3D;&#x3D; key)
+        return i;
+    &#125;
+&#125;
 int main()
 &#123;
-    cin &gt;&gt; n;
-    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ )   cin &gt;&gt; q[i];
-
-    for(int l &#x3D; 1, r &#x3D; 1; r &lt;&#x3D; n; r ++)
+    cin &gt;&gt; k;
+    for(int i &#x3D; 1; i &lt;&#x3D; k; i ++ )
     &#123;
-        p[q[r]] ++;
-        while(l &lt; r &amp;&amp; p[q[r]] &gt; 1)    p[q[l ++]] --;
-        res &#x3D; max(res, r - l + 1);&#x2F;&#x2F;更新成最大值
+        cin &gt;&gt; a[i];
+        cin &gt;&gt; b[i];
+        c[m] &#x3D; a[i];
+        m ++;
+        c[m] &#x3D; b[i];
+        m ++;
     &#125;
-    cout &lt;&lt; res;
-    return 0;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    sort(c + 1, c + m);
 
-<p>通过两个指针l， r的依次移动，对于每个扫过去的数字，存储进p数组内。然后通过对p数组出现数字次数的判断，来判断是否存在一个不重复序列。</p>
-<hr>
-<h2 id="二、数组元素的目标和"><a href="#二、数组元素的目标和" class="headerlink" title="二、数组元素的目标和"></a>二、数组元素的目标和</h2><p><img src="https://img-blog.csdnimg.cn/20200907110046646.png" alt="数组元素的目标和"></p>
-<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;iostream&gt;
-
-using namespace std;
-
-const int N &#x3D; 100010;
-
-int n, m, x;
-int a[N], b[N];
-int main()
-&#123;
-    cin &gt;&gt; n &gt;&gt; m &gt;&gt; x;
-    for(int i &#x3D; 0; i &lt; n; i ++ )    cin &gt;&gt; a[i];
-    for(int i &#x3D; 0; i &lt; m; i ++ )    cin &gt;&gt; b[i];
-
-    for(int i &#x3D; 0, j &#x3D; m - 1; i &lt; n; i ++)
+    for(int i &#x3D; 1;i &lt;&#x3D; k; i ++ )
     &#123;
-        while(j &gt;&#x3D; 0 &amp;&amp; a[i] + b[j] &gt; x)    j --;
-        if(j &gt;&#x3D; 0 &amp;&amp; a[i] + b[j] &#x3D;&#x3D; x)  cout &lt;&lt; i &lt;&lt; &#39; &#39; &lt;&lt; j &lt;&lt; endl;
-    &#125;
-    return 0;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        a[i] &#x3D; find(a[i]);
+        b[i] &#x3D; find(b[i]) - 1;&#x2F;&#x2F;找原位置
 
-<p>这是双指针算法的第二种形式，主要类似于归并排序里面的思想，在两个数组里面依次移动，本题目做了一些优化，主要是将第二个数组从后往前，减小了出错的机率。</p>
-<hr>
+        for(int j &#x3D; a[i]; j &lt;&#x3D; b[i]; j ++ )
+        flag[j] &#x3D; true;&#x2F;&#x2F;为有效
+    &#125;
+    for(long i&#x3D;1;i&lt;&#x3D;m;++i)
+    &#123;
+        if(flag[i])
+        ans +&#x3D; c[i + 1]-c[i];&#x2F;&#x2F;有效，加入ans
+    &#125;
+    cout &lt;&lt; ans;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
             </div>
             <hr/>
@@ -561,7 +560,7 @@ int main()
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://wustuzi.github.io/2020/09/07/%E7%AE%97%E6%B3%95-%E5%8F%8C%E6%8C%87%E9%92%88%E7%AE%97%E6%B3%95/">http://wustuzi.github.io/2020/09/07/%E7%AE%97%E6%B3%95-%E5%8F%8C%E6%8C%87%E9%92%88%E7%AE%97%E6%B3%95/</a>
+                    <a href="http://wustuzi.github.io/2020/09/24/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83-%E7%A6%BB%E6%95%A3%E5%8C%96%E4%B8%8E%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6/">http://wustuzi.github.io/2020/09/24/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83-%E7%A6%BB%E6%95%A3%E5%8C%96%E4%B8%8E%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -599,12 +598,12 @@ int main()
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/">
-                                    <span class="chip bg-color">基础算法</span>
-                                </a>
-                            
                                 <a href="/tags/C/">
                                     <span class="chip bg-color">C++</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83/">
+                                    <span class="chip bg-color">算法训练</span>
                                 </a>
                             
                         </div>
@@ -775,7 +774,7 @@ int main()
         repo: 'wustuzi.github.io',
         owner: 'wustuzi',
         admin: "wustuzi",
-        id: '2020-09-07T10-50-25',
+        id: '2020-09-24T15-09-21',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -803,28 +802,25 @@ int main()
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/09/08/%E7%AE%97%E6%B3%95-%E4%BD%8D%E8%BF%90%E7%AE%97/">
+                <a href="/2020/10/21/%E7%AE%97%E6%B3%95-%E5%8D%95%E9%93%BE%E8%A1%A8%E4%B8%8E%E5%8F%8C%E9%93%BE%E8%A1%A8/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="算法 位运算">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="算法 单链表与双链表">
                         
-                        <span class="card-title">算法 位运算</span>
+                        <span class="card-title">算法 单链表与双链表</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            位运算在某些特定的题目里面会有涉及，可以在较快的时间内求解一些特殊的问题，比如求1或者0，在二进制里面有非常特殊的运用。
-位运算一、二进制中1的个数
-#include &lt;iostream&gt;
-
-using namespace st
+                            ​        单链表在我们的算法题里面是很基础的一个东西，本节主要介绍几个链表的基本结构，为之后的双链表，以及一些需要用到单链表的地方进行基础学习。双链表对于单链表也只是多了一些东西罢了，基本的思想和结构还是和单链表十分相似的。
+单链表
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-09-08
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-10-21
                         </span>
                         <span class="publish-author">
                             
@@ -846,7 +842,7 @@ using namespace st
                     </a>
                     
                     <a href="/tags/C/">
-                        <span class="chip bg-color">C ++</span>
+                        <span class="chip bg-color">C++</span>
                     </a>
                     
                 </div>
@@ -860,29 +856,28 @@ using namespace st
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/08/27/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83-%E5%89%8D%E7%BC%80%E5%92%8C%E4%B8%8E%E5%B7%AE%E5%88%86/">
+                <a href="/2020/09/13/%E7%AE%97%E6%B3%95-%E7%A6%BB%E6%95%A3%E5%8C%96%E4%B8%8E%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="算法训练 前缀和与差分">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="算法 离散化与区间合并">
                         
-                        <span class="card-title">算法训练 前缀和与差分</span>
+                        <span class="card-title">算法 离散化与区间合并</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            前缀和和差分问题在解决两类分别不同的问题时作用非常大，我们可以具体看几个例题，加深对于前缀和与差分的理解。
-前缀和与差分训练1.前缀和一、取石子
-题解：
-#include&lt;iostream&gt;
+                            离散化是一种很特殊的哈希方式，将一个较大区间的数字按照一定的规律进行缩小，从而达到方便1快速访问和查找的效果；区间合并，顾名思义，就是把有重复部分的区间合并成为一个区间，避免访问中的重复询问。
+离散化与区间合并一、离散化
 
-using namespace s
+
+
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-27
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-13
                             </span>
                         <span class="publish-author">
                             
@@ -899,12 +894,12 @@ using namespace s
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/C/">
-                        <span class="chip bg-color">C++</span>
+                    <a href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/">
+                        <span class="chip bg-color">基础算法</span>
                     </a>
                     
-                    <a href="/tags/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83/">
-                        <span class="chip bg-color">算法训练</span>
+                    <a href="/tags/C/">
+                        <span class="chip bg-color">C++</span>
                     </a>
                     
                 </div>
