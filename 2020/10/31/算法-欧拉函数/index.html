@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="算法训练 前缀和与差分, KQ的博客">
+    <meta name="keywords" content="算法 欧拉函数, KQ的博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>算法训练 前缀和与差分 | KQ的博客</title>
+    <title>算法 欧拉函数 | KQ的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -308,12 +308,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">算法训练 前缀和与差分</h1>
+                    <h1 class="description center-align post-title">算法 欧拉函数</h1>
                 </div>
             </div>
         </div>
@@ -430,12 +430,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/C/">
-                                <span class="chip bg-color">C++</span>
-                            </a>
-                        
-                            <a href="/tags/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83/">
-                                <span class="chip bg-color">算法训练</span>
+                            <a href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95-C/">
+                                <span class="chip bg-color">-基础算法 - C++</span>
                             </a>
                         
                     </div>
@@ -459,7 +455,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-08-27
+                    2020-10-31
                 </div>
                 
 
@@ -468,14 +464,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.6k
+                    716
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    8 分
+                    3 分
                 </div>
                 
 
@@ -485,286 +481,103 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>前缀和和差分问题在解决两类分别不同的问题时作用非常大，我们可以具体看几个例题，加深对于前缀和与差分的理解。</p>
-<h1 id="前缀和与差分训练"><a href="#前缀和与差分训练" class="headerlink" title="前缀和与差分训练"></a>前缀和与差分训练</h1><h2 id="1-前缀和"><a href="#1-前缀和" class="headerlink" title="1.前缀和"></a>1.前缀和</h2><h3 id="一、取石子"><a href="#一、取石子" class="headerlink" title="一、取石子"></a>一、取石子</h3><p><img src="https://img-blog.csdnimg.cn/20200826102242259.png" alt="取石子"></p>
-<p>题解：</p>
-<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include&lt;iostream&gt;
-
-using namespace std;
-const int N &#x3D; 110;
-int a[N];
-int n;
-long long sum, k;
-
-int main()
-&#123;
-    cin &gt;&gt; n;
-    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ )
-    &#123;
-        cin &gt;&gt; a[i];
-        sum +&#x3D; a[i];
-    &#125;
-    if(sum % 2) cout &lt;&lt; &quot;Alice&quot;;
-    else    cout &lt;&lt; &quot;Bob&quot;;
-    return 0;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>这个题目只要理解了题意就会比较简单，因为无论如何石子最后的数量都会被取光，所以石子总个数的奇偶性就是答案的最根本依据。</p>
-<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4702">原题链接</a></p>
+                <h3 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h3><p>欧拉函数的定义： 1<del>N中与N互质的数的个数（例如：6的欧拉函数是2，因为在1</del>6中，6 与  1和5 互质）<br>欧拉函数的快速求法： 一个数字N可以分解质因数为N = P1^α1 * P2^α2……Pk^αk，则一个数字的欧拉函数值为：N * （1 - 1/P1） * （1 - 1/P2）……（1 - 1/Pk）。（原理是容斥原理，需要了解的同学们可以去网上搜索一下，也可以直接背公式进行运用）</p>
 <hr>
-<h3 id="二、连续自然数和"><a href="#二、连续自然数和" class="headerlink" title="二、连续自然数和"></a>二、连续自然数和</h3><p><img src="https://img-blog.csdnimg.cn/20200826102122622.png" alt="连续自然数和"></p>
-<p>题解：</p>
-<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include&lt;iostream&gt;
-
-using namespace std;
-int m;
-const int N &#x3D; 2000010;
-int a[N];
-int main()
-&#123;
-    cin &gt;&gt; m;
-    for(int i &#x3D; 1; i &lt;&#x3D; N; i ++ )
-    &#123;
-        a[i] +&#x3D; a[i - 1] + i;
-    &#125;
-    for(int i &#x3D; 4, j &#x3D; 1; i &lt; m;)
-    &#123;
-        if(a[i] - a[j - 1] &lt; m) i ++;
-        else if(a[i] - a[j - 1] &gt; m) j ++;
-        else
-        &#123;
-            cout &lt;&lt; j &lt;&lt; &#39; &#39; &lt;&lt; i &lt;&lt; endl;
-            i ++;
-            j ++;
-        &#125;
-    &#125;
-    return 0;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>这个题目主要的核心其实应该是双指针算法，但是最基本的要求也是在先有前缀和的条件基础上使用双指针算法，通过后面一个数字的前缀和减去前面一个数字的，从而达到快速求出某一段的具体值的效果。</p>
-<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1147">原题链接</a></p>
-<hr>
-<h3 id="三、Subsequences-Summing-to-Sevens-S"><a href="#三、Subsequences-Summing-to-Sevens-S" class="headerlink" title="三、Subsequences Summing to Sevens S"></a>三、Subsequences Summing to Sevens S</h3><p><img src="https://img-blog.csdnimg.cn/20200826102155554.png" alt="Subsequences Summing to Sevens S"></p>
-<p>题解：</p>
-<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include&lt;iostream&gt;
-
-using namespace std;
-const int N &#x3D; 100010;
-int q[N];
-int l[7], r[7];
-int n, max1;
-
-int main()
-&#123;
-    cin &gt;&gt; n;
-    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ )
-    &#123;
-        cin &gt;&gt; q[i];
-        q[i] +&#x3D; q[i - 1];
-        q[i] %&#x3D; 7;
-    &#125;
-
-    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ )
-    &#123;
-        if(l[q[i]] &#x3D;&#x3D; 0 )   l[q[i]] &#x3D; i;
-
-        if(r[q[i]] &#x3D;&#x3D; 0 )   r[q[i]] &#x3D; i;
-        else if(r[q[i]] &lt; i)    r[q[i]] &#x3D; i;
-    &#125;
-    for(int i &#x3D; 0; i &lt;&#x3D; 6; i ++ )
-    &#123;
-        if(r[i] - l[i] &gt;&#x3D; max1) max1 &#x3D; r[i] - l[i];
-    &#125;
-    cout &lt;&lt; max1;
-    return 0;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>这个题目有个地方最关键，就是l和r数组，里面存储的是每一个数字对应的余数，易知，当余数为相同的时候，相减部分应当都能被被除数整除。</p>
-<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3131">原题链接</a></p>
-<hr>
-<h3 id="四、Programiranje"><a href="#四、Programiranje" class="headerlink" title="四、Programiranje"></a>四、Programiranje</h3><p><img src="https://img-blog.csdnimg.cn/20200826102526576.png"></p>
-<p><img src="https://img-blog.csdnimg.cn/20200827133744512.png" alt="Programiranje"></p>
-<p>题解：</p>
-<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include&lt;iostream&gt;
-
-using namespace std;
-const int N &#x3D; 50010;
-int q[N][27];
-
-int main()
-&#123;
-    string str;
-    cin &gt;&gt; str;
-    int n &#x3D; str.size(), k, t, a, b, c, d, m;
-    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ )
-    &#123;
-        k &#x3D; str[i - 1] - &#39;a&#39; + 1;
-        q[i][k] ++;
-        for(int j &#x3D; 1; j &lt;&#x3D; 26; j ++ )
-        &#123;
-            q[i][j] +&#x3D; q[i - 1][j];
-        &#125;
-    &#125;
-
-    cin &gt;&gt; m;
-    while(m --)
-    &#123;
-        cin &gt;&gt; a &gt;&gt; b &gt;&gt; c &gt;&gt; d;
-        for(int i &#x3D; 1; i &lt;&#x3D; 26; i ++ )
-        &#123;
-           if(q[b][i] - q[a - 1][i] &#x3D;&#x3D; q[d][i] - q[c - 1][i])
-           &#123;
-               t &#x3D; 1;
-           &#125;
-           else
-           &#123;
-               t &#x3D; 0;
-               break;
-           &#125;
-        &#125;
-        if(t)   cout &lt;&lt; &quot;DA&quot; &lt;&lt;endl;
-        else    cout &lt;&lt; &quot;NE&quot; &lt;&lt; endl;
-    &#125;
-    return 0;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>本题最终目的即为查看重复出现的字母，我的做法是开一个二维数组，来存放每一个出现的数字，同样的也可以通过求前缀和的方法来求解本题，但是需要注意的是，可以对每个相应的字母乘以一个无关的量，从而减小出错概率。</p>
-<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4440">原题链接</a></p>
-<hr>
-<h2 id="2-差分"><a href="#2-差分" class="headerlink" title="2.差分"></a>2.差分</h2><h3 id="一、海底高铁"><a href="#一、海底高铁" class="headerlink" title="一、海底高铁"></a>一、海底高铁</h3><p><img src="https://img-blog.csdnimg.cn/20200827134442693.png"></p>
-<p><img src="https://img-blog.csdnimg.cn/20200827134455696.png" alt="海底高铁"></p>
-<p>题解：</p>
-<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include&lt;iostream&gt;
-#include&lt;algorithm&gt;
+<h1 id="欧拉函数"><a href="#欧拉函数" class="headerlink" title="欧拉函数"></a>欧拉函数</h1><p><img src="https://img-blog.csdnimg.cn/20201031002232863.png" alt="欧拉函数"></p>
+<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;iostream&gt;
 
 using namespace std;
 
-typedef long long L;
-const int N &#x3D; 100010;
-int a[N], b[N], c[N], p[N];&#x2F;&#x2F;p存放路径
-L ans, q[N];&#x2F;&#x2F;q 存放差分结果
-int main()
+int phi(int x)&#x2F;&#x2F;公式求欧拉函数
 &#123;
-    int n, m;
-    cin &gt;&gt; n &gt;&gt; m;
-    for(int i &#x3D; 1; i &lt;&#x3D; m; i ++ )   cin &gt;&gt; p[i];
-    for(int i &#x3D; 1; i &lt; n; i ++ )    cin &gt;&gt; a[i] &gt;&gt; b[i] &gt;&gt; c[i];
-
-    for(int i &#x3D; 1; i &lt; m; i ++ )&#x2F;&#x2F;形成差分
+    int ans &#x3D; x;  &#x2F;&#x2F;公式中第一个N
+    for(int i &#x3D; 2; i &lt;&#x3D; x &#x2F; i; i ++ )&#x2F;&#x2F;循环里面去掉2~√x 的P1……Pk
     &#123;
-        if(p[i] &gt; p[i + 1])
+        if(x % i &#x3D;&#x3D; 0)
         &#123;
-            q[p[i + 1]] ++;
-            q[p[i]] --;
-        &#125;
-        else
-        &#123;
-            q[p[i + 1]] --;
-            q[p[i]] ++;
+            ans &#x3D; ans &#x2F; i * (i - 1);&#x2F;&#x2F;对于每一个Pk乘进结果里面
+            while(x % i &#x3D;&#x3D; 0)   x &#x2F;&#x3D; i;&#x2F;&#x2F;把Pk的倍数因子消去
         &#125;
     &#125;
-    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ )   q[i] +&#x3D; q[i - 1];
-
-    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ )
-    &#123;
-        if(b[i] * q[i] + c[i] &gt;&#x3D; a[i] * q[i])
-        &#123;
-            ans +&#x3D; a[i] * q[i];
-        &#125;
-        else
-        &#123;
-            ans +&#x3D; b[i] * q[i] + c[i];
-        &#125;
-    &#125;
-    cout &lt;&lt; ans;
-    return 0;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>我们可以知道，到达了哪个城市，通过哪个路径，可以很清晰的通过该路径的差分矩阵来表示，然后再通过求差分矩阵的前缀和求出每一段路一共经过了多少次，最后判断是否买卡，从而求得最小的总花费。</p>
-<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3406">原题链接</a></p>
-<h3 id="二、地毯"><a href="#二、地毯" class="headerlink" title="二、地毯"></a>二、地毯</h3><p><img src="https://img-blog.csdnimg.cn/20200827134518950.png"></p>
-<p><img src="https://img-blog.csdnimg.cn/20200827134539335.png" alt="地毯"></p>
-<p>题解：</p>
-<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include&lt;iostream&gt;
-
-using namespace std;
-const int N &#x3D; 1010;
-int q[N][N], b[N][N];
-int n, m, x1, y1, x2, y2;
-void insert(int x1, int y1, int x2, int y2)
-&#123;
-    b[x1][y1] ++;
-    b[x2 + 1][y1] --;
-    b[x1][y2 + 1] --;
-    b[x2 + 1][y2 + 1] ++;
+    if(x &gt; 1)   ans &#x3D; ans &#x2F; x * (x - 1);&#x2F;&#x2F;最后一个因数的判断
+    return ans;
 &#125;
+
 int main()
 &#123;
-    cin &gt;&gt; n &gt;&gt; m;
-    while(m --)
+    int n;
+    cin &gt;&gt; n;
+    while(n -- )
     &#123;
-        cin &gt;&gt; x1 &gt;&gt; y1 &gt;&gt; x2 &gt;&gt; y2;
-        insert(x1, y1, x2, y2);
+        int k;
+        cin &gt;&gt; k;
+        cout &lt;&lt; phi(k) &lt;&lt; endl;
     &#125;
-    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ )
-    &#123;
-        for(int j &#x3D; 1; j &lt;&#x3D; n; j ++ )
-        &#123;
-            b[i][j] +&#x3D; b[i - 1][j] + b[i][j - 1] - b[i - 1][j - 1];
-        &#125;
-    &#125;
-    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ )
-    &#123;
-        for(int j &#x3D; 1; j &lt;&#x3D; n; j ++ )
-        &#123;
-            cout &lt;&lt; b[i][j] &lt;&lt; &#39; &#39;;
-        &#125;
-        cout &lt;&lt; endl;
-    &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>很明显的二维差分数组的问题，对某一块地方盖上地毯，相当于对该部分里的每一个数据进行加一，也就是我们进行差分操作，最后求前缀和得到地板真正的形状。</p>
-<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3397">原题链接</a></p>
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这里是最基础的求欧拉函数的方法，通过公式来求。熟记模板即可。</p>
 <hr>
-<h3 id="三、cover"><a href="#三、cover" class="headerlink" title="三、cover"></a>三、cover</h3><p><img src="https://img-blog.csdnimg.cn/20200827134604408.png" alt="cover"></p>
-<p>题解：</p>
-<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include&lt;iostream&gt;
+<h1 id="筛法求欧拉函数"><a href="#筛法求欧拉函数" class="headerlink" title="筛法求欧拉函数"></a>筛法求欧拉函数</h1><p><img src="https://img-blog.csdnimg.cn/20201031004233877.png" alt="筛法求欧拉函数"></p>
+<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;iostream&gt;
 
 using namespace std;
-const int N &#x3D; 1010;
-int n, m, r, sum;
-bool a[N][N];
+
+typedef long long LL;
+
+const int N &#x3D; 1000010;
+int p[N], cnt;&#x2F;&#x2F;存放质数
+int e[N];&#x2F;&#x2F;存放每一个点的欧拉函数值
+bool st[N];&#x2F;&#x2F;存放质数
+
+void get(int x)
+&#123;
+    e[1] &#x3D; 1;
+    for(int i &#x3D; 2; i &lt;&#x3D; x; i ++ )
+    &#123;
+        if(!st[i])
+        &#123;
+            p[cnt ++] &#x3D; i;
+            e[i] &#x3D; i - 1;&#x2F;&#x2F;如果i是质数，那么从1~i-1都与i互质
+        &#125;
+        for(int j &#x3D; 0; p[j] &lt;&#x3D; x &#x2F; i; j ++ )
+        &#123;
+            st[p[j] * i] &#x3D; true;&#x2F;&#x2F;记录该数字是合数
+            if(i % p[j] &#x3D;&#x3D; 0)&#x2F;&#x2F;p[j]是i 和 i * p[j]的最小质因子
+            &#123;
+                e[p[j] * i] &#x3D; e[i] * p[j];
+                break;
+            &#125;
+            e[p[j] * i] &#x3D; e[i] * (p[j] - 1);
+        &#125;
+    &#125;
+&#125;
 
 int main()
 &#123;
-    cin &gt;&gt; n &gt;&gt; m &gt;&gt; r;
-    while(m -- )
-    &#123;
-        int x1, y1;
-        cin &gt;&gt; x1 &gt;&gt; y1;
-        a[x1][y1] &#x3D; 1;
-        for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ )
-        &#123;
-            for(int j &#x3D; 1; j &lt;&#x3D; n; j ++ )
-            &#123;
-                if((x1 - i) * (x1 - i) + (y1 - j) * (y1 - j) &lt;&#x3D; r * r)  a[i][j] &#x3D; 1;
-            &#125;
-        &#125;
-    &#125;
-    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ )
-    &#123;
-        for(int j &#x3D; 1; j &lt;&#x3D; n; j ++ )
-        &#123;
-            if(a[i][j]) sum ++;
-        &#125;
-    &#125;
-    cout &lt;&lt; sum;
-    return 0;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    int n;
+    cin &gt;&gt; n;
+    get(n);
 
-<p>最重要的一段就是中间判断该点内是否在搜索范围内，搜索的应该是直线距离。</p>
-<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3717">原题链接</a></p>
-<hr>
+    LL ans;
+    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ )   ans +&#x3D; e[i];
+
+    cout &lt;&lt; ans &lt;&lt; endl;
+    return 0;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这个线性筛求欧拉函数里面比较难理解的是下面两个e[p[j] * i]的求法。</p>
+<p>对于第一个e[p[j] * i]</p>
+<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">&#x2F;&#x2F;e[i] &#x3D; i * (1 - 1&#x2F;p1) *……*(1 - 1&#x2F;pk)
+&#x2F;&#x2F;那么e[i*pj] &#x3D; pj * i * (1 - 1&#x2F;p1) *……*(1 - 1&#x2F;pk)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p> 对于第二个e[p[j] * i]</p>
+<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">&#x2F;&#x2F;如果pj不是i的质因子，那么pj就是i*pj的最小质因子
+&#x2F;&#x2F;那么i*pj的质因子只比i的多一个pj
+&#x2F;&#x2F;所有euler[i*pj] &#x3D; pj*i*(1 - 1&#x2F;p1)*……*(1 - 1&#x2F;pk)*(1 - 1&#x2F;pj)
+&#x2F;&#x2F;               &#x3D; euler[i] * pj * (1 - 1&#x2F;pj)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这两处理解清楚题目要求应该不大。</p>
 
             </div>
             <hr/>
@@ -790,7 +603,7 @@ int main()
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://wustuzi.github.io/2020/08/27/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83-%E5%89%8D%E7%BC%80%E5%92%8C%E4%B8%8E%E5%B7%AE%E5%88%86/">http://wustuzi.github.io/2020/08/27/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83-%E5%89%8D%E7%BC%80%E5%92%8C%E4%B8%8E%E5%B7%AE%E5%88%86/</a>
+                    <a href="http://wustuzi.github.io/2020/10/31/%E7%AE%97%E6%B3%95-%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0/">http://wustuzi.github.io/2020/10/31/%E7%AE%97%E6%B3%95-%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -828,12 +641,8 @@ int main()
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/C/">
-                                    <span class="chip bg-color">C++</span>
-                                </a>
-                            
-                                <a href="/tags/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83/">
-                                    <span class="chip bg-color">算法训练</span>
+                                <a href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95-C/">
+                                    <span class="chip bg-color">-基础算法 - C++</span>
                                 </a>
                             
                         </div>
@@ -1004,7 +813,7 @@ int main()
         repo: 'wustuzi.github.io',
         owner: 'wustuzi',
         admin: "wustuzi",
-        id: '2020-08-27T13-22-41',
+        id: '2020-10-31T00-09-26',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -1028,31 +837,30 @@ int main()
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/09/07/%E7%AE%97%E6%B3%95-%E5%8F%8C%E6%8C%87%E9%92%88%E7%AE%97%E6%B3%95/">
+                <a href="/2020/10/31/%E7%AE%97%E6%B3%95-%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="算法 双指针算法">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="算法 欧拉函数">
                         
-                        <span class="card-title">算法 双指针算法</span>
+                        <span class="card-title">算法 欧拉函数</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            双指针算法在我们平时的还很多例题里面都有涉及，比如归并排序里面，两个指针指向每一半的开头部分，通过对比大小向后移动。又比如在模拟栈里面，通过两个指针模拟栈的栈顶和栈底元素。也是属于一种双指针算法。
-双指针算法一.最长连续不重复子序列
-#in
+                            背景知识欧拉函数的定义： 1N中与N互质的数的个数（例如：6的欧拉函数是2，因为在16中，6 与  1和5 互质）欧拉函数的快速求法： 一个数字N可以分解质因数为N = P1^α1 * P2^α2……Pk^αk，则一个数字的欧拉函数值为：N
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-09-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-31
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1065,15 +873,12 @@ int main()
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/">
-                        <span class="chip bg-color">基础算法</span>
-                    </a>
-                    
-                    <a href="/tags/C/">
-                        <span class="chip bg-color">C++</span>
+                    <a href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95-C/">
+                        <span class="chip bg-color">-基础算法 - C++</span>
                     </a>
                     
                 </div>
@@ -1087,24 +892,25 @@ int main()
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/08/26/%E7%AE%97%E6%B3%95-%E5%89%8D%E7%BC%80%E5%92%8C%E4%B8%8E%E5%B7%AE%E5%88%86/">
+                <a href="/2020/10/21/%E7%AE%97%E6%B3%95-%E5%8D%95%E9%93%BE%E8%A1%A8%E4%B8%8E%E5%8F%8C%E9%93%BE%E8%A1%A8/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="算法  前缀和与差分">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="算法 单链表与双链表">
                         
-                        <span class="card-title">算法  前缀和与差分</span>
+                        <span class="card-title">算法 单链表与双链表</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            前缀和与差分问题在解决某一些特定问题的时候非常好用，比如在需要快速求解某一段区间内的总和时，只需要动用前缀和数组用a[n] - a[m]就可以快速求解，降低时间复杂度为o(1)。而差分是前缀和的一个逆运算，当需要给区间内每一个数字进行加减运
+                            ​        单链表在我们的算法题里面是很基础的一个东西，本节主要介绍几个链表的基本结构，为之后的双链表，以及一些需要用到单链表的地方进行基础学习。双链表对于单链表也只是多了一些东西罢了，基本的思想和结构还是和单链表十分相似的。
+单链表
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-26
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-21
                             </span>
                         <span class="publish-author">
                             
