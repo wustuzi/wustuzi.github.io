@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>算法学习 寒假每日一题</title>
+      <link href="/2021/01/11/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E5%AF%92%E5%81%87%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/"/>
+      <url>/2021/01/11/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E5%AF%92%E5%81%87%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/</url>
+      
+        <content type="html"><![CDATA[<p>在寒假期间 Acwing网站推出每日一题活动， 在这个博客里面进行手机以及分析并给出题解</p><h1 id="1-9日-货仓选址"><a href="#1-9日-货仓选址" class="headerlink" title="1.9日 货仓选址"></a>1.9日 货仓选址</h1><p>题目：</p><p><img src="https://img-blog.csdnimg.cn/20210111212725852.png" alt="货仓选址"></p><p>题解：</p><pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;iostream&gt;#include &lt;algorithm&gt;using namespace std;const int N &#x3D; 100010;int a[N];int ans;int main()&#123;    int n;    cin &gt;&gt; n;    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ )   cin &gt;&gt; a[i];    sort(a + 1, a + n + 1);    for(int i &#x3D; 1; i &lt;&#x3D; n &#x2F; 2; i ++ )    &#123;        ans +&#x3D; a[n + 1 - i] - a[i];    &#125;    cout &lt;&lt; ans;    return 0;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>​        本题主要是算法的分析，代码难度较简单，只要将题目算法弄清楚，代码就比较简单，本题有n个商店，那么如何选址，才会使得到达总距离最小，假设只有两个商店，那么货仓选址在两个商店之间，使得总距离最小，而如果有三家商店，当选址为最中心一家商店时，总距离最小，推广到多组情形，对于每第i家和第n - i + 1家商店来说，将货仓放在两家商店之间都是最优解，那么将货仓放在最中间两家商店之间或者放在最中间一家商店上，使得总距离最小。</p><hr>]]></content>
+      
+      
+      <categories>
+          
+          <category> 寒假每日一题 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> -算法训练 -C++ </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>蓝桥杯真题训练2020.10.31 上</title>
       <link href="/2020/11/06/%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%9C%9F%E9%A2%98%E8%AE%AD%E7%BB%832020.10.31%20%E4%B8%8A/"/>
       <url>/2020/11/06/%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%9C%9F%E9%A2%98%E8%AE%AD%E7%BB%832020.10.31%20%E4%B8%8A/</url>
@@ -102,33 +127,6 @@
             <tag> C++ </tag>
             
             <tag> 算法训练 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>算法 离散化与区间合并</title>
-      <link href="/2020/09/13/%E7%AE%97%E6%B3%95-%E7%A6%BB%E6%95%A3%E5%8C%96%E4%B8%8E%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6/"/>
-      <url>/2020/09/13/%E7%AE%97%E6%B3%95-%E7%A6%BB%E6%95%A3%E5%8C%96%E4%B8%8E%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6/</url>
-      
-        <content type="html"><![CDATA[<p>离散化是一种很特殊的哈希方式，将一个较大区间的数字按照一定的规律进行缩小，从而达到方便1快速访问和查找的效果；区间合并，顾名思义，就是把有重复部分的区间合并成为一个区间，避免访问中的重复询问。</p><h1 id="离散化与区间合并"><a href="#离散化与区间合并" class="headerlink" title="离散化与区间合并"></a>离散化与区间合并</h1><h2 id="一、离散化"><a href="#一、离散化" class="headerlink" title="一、离散化"></a>一、离散化</h2><p><img src="https://img-blog.csdnimg.cn/20200913112937545.png" alt="离散化"></p><pre class="line-numbers language-C++" data-language="C++"><code class="language-C++"><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>]]></content>
-      
-      
-      <categories>
-          
-          <category> 基础算法学习 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 基础算法 </tag>
-            
-            <tag> C++ </tag>
             
         </tags>
       
