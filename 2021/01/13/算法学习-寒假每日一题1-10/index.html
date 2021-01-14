@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="算法学习 寒假每日一题, KQ的博客">
+    <meta name="keywords" content="算法学习 寒假每日一题1.10, KQ的博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>算法学习 寒假每日一题 | KQ的博客</title>
+    <title>算法学习 寒假每日一题1.10 | KQ的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -308,12 +308,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">算法学习 寒假每日一题</h1>
+                    <h1 class="description center-align post-title">算法学习 寒假每日一题1.10</h1>
                 </div>
             </div>
         </div>
@@ -430,8 +430,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83-C/">
-                                <span class="chip bg-color">-算法训练 -C++</span>
+                            <a href="/tags/C/">
+                                <span class="chip bg-color">C++</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83/">
+                                <span class="chip bg-color">算法训练</span>
                             </a>
                         
                     </div>
@@ -455,7 +459,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-01-11
+                    2021-01-13
                 </div>
                 
 
@@ -464,7 +468,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    311
+                    183
                 </div>
                 
 
@@ -481,34 +485,47 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>在寒假期间 Acwing网站推出每日一题活动， 在这个博客里面进行手机以及分析并给出题解</p>
-<h1 id="1-9日-货仓选址"><a href="#1-9日-货仓选址" class="headerlink" title="1.9日 货仓选址"></a>1.9日 货仓选址</h1><p>题目：</p>
-<p><img src="https://img-blog.csdnimg.cn/20210111212725852.png" alt="货仓选址"></p>
+                <h1 id="1-10日-数字三角形"><a href="#1-10日-数字三角形" class="headerlink" title="1.10日 数字三角形"></a>1.10日 数字三角形</h1><p>题目：</p>
+<p><img src="https://img-blog.csdnimg.cn/20210113120926134.png" alt="数字三角形"></p>
 <p>题解：</p>
 <pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;iostream&gt;
 #include &lt;algorithm&gt;
 
 using namespace std;
-const int N &#x3D; 100010;
-int a[N];
-int ans;
+
+const int N &#x3D; 510;
+int a[N][N];
+int n, ans;
+
+void dfs(int u, int k, int sum)
+&#123;
+    if(u &#x3D;&#x3D; n)
+    &#123;
+        ans &#x3D; max(ans, sum);
+        return;
+    &#125;
+
+    for(int i &#x3D; 0; i &lt;&#x3D; 1; i ++ )
+    &#123;
+        dfs(u + 1, k + i,sum + a[u + 1][k + i]);
+    &#125;
+&#125;
 int main()
 &#123;
-    int n;
     cin &gt;&gt; n;
-    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ )   cin &gt;&gt; a[i];
-
-    sort(a + 1, a + n + 1);
-    for(int i &#x3D; 1; i &lt;&#x3D; n &#x2F; 2; i ++ )
+    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ )
     &#123;
-        ans +&#x3D; a[n + 1 - i] - a[i];
+        for(int j &#x3D; 1; j &lt;&#x3D; i; j ++ )
+        &#123;
+            cin &gt;&gt; a[i][j];
+        &#125;
     &#125;
+    dfs(1, 1, a[1][1]);
     cout &lt;&lt; ans;
     return 0;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>​        本题主要是算法的分析，代码难度较简单，只要将题目算法弄清楚，代码就比较简单，本题有n个商店，那么如何选址，才会使得到达总距离最小，假设只有两个商店，那么货仓选址在两个商店之间，使得总距离最小，而如果有三家商店，当选址为最中心一家商店时，总距离最小，推广到多组情形，对于每第i家和第n - i + 1家商店来说，将货仓放在两家商店之间都是最优解，那么将货仓放在最中间两家商店之间或者放在最中间一家商店上，使得总距离最小。</p>
-<hr>
+<p>​    这道题目我是用搜索的方法做的，依次递归二维数组正下方的数字和下右方的数字，对比每条路径的长度来求出最大的结果。</p>
 
             </div>
             <hr/>
@@ -534,7 +551,7 @@ int main()
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://wustuzi.github.io/2021/01/11/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E5%AF%92%E5%81%87%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/">http://wustuzi.github.io/2021/01/11/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E5%AF%92%E5%81%87%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/</a>
+                    <a href="http://wustuzi.github.io/2021/01/13/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E5%AF%92%E5%81%87%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%981-10/">http://wustuzi.github.io/2021/01/13/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E5%AF%92%E5%81%87%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%981-10/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -572,8 +589,12 @@ int main()
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83-C/">
-                                    <span class="chip bg-color">-算法训练 -C++</span>
+                                <a href="/tags/C/">
+                                    <span class="chip bg-color">C++</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83/">
+                                    <span class="chip bg-color">算法训练</span>
                                 </a>
                             
                         </div>
@@ -744,7 +765,7 @@ int main()
         repo: 'wustuzi.github.io',
         owner: 'wustuzi',
         admin: "wustuzi",
-        id: '2021-01-11T21-12-52',
+        id: '2021-01-13T12-04-54',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -768,18 +789,80 @@ int main()
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/01/11/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E5%AF%92%E5%81%87%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/">
+                <a href="/2021/01/13/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E5%AF%92%E5%81%87%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%981-11/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="算法学习 寒假每日一题">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="算法学习 寒假每日一题1.11">
                         
-                        <span class="card-title">算法学习 寒假每日一题</span>
+                        <span class="card-title">算法学习 寒假每日一题1.11</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            1.11 蛇形矩阵题目：
+
+题解：
+#include &lt;iostream&gt;
+
+using namespace std;
+const int N &#x3D; 110;
+int q[N][N];
+int n, m;
+
+int ma
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-01-13
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AF%92%E5%81%87%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" class="post-category">
+                                    寒假每日一题
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/C/">
+                        <span class="chip bg-color">C++</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83/">
+                        <span class="chip bg-color">算法训练</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/01/11/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E5%AF%92%E5%81%87%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%981.9/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="算法学习 寒假每日一题1.9">
+                        
+                        <span class="card-title">算法学习 寒假每日一题1.9</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -811,65 +894,15 @@ usi
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83-C/">
-                        <span class="chip bg-color">-算法训练 -C++</span>
+                    <a href="/tags/C/">
+                        <span class="chip bg-color">C++</span>
                     </a>
                     
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/11/06/%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%9C%9F%E9%A2%98%E8%AE%AD%E7%BB%832020.10.31%20%E4%B8%8A/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="蓝桥杯真题训练2020.10.31 上">
-                        
-                        <span class="card-title">蓝桥杯真题训练2020.10.31 上</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            本章节是对蓝桥杯出现的一些真题进行训练并且分析，达到算法题代码训练的效果
-1.世纪末的星期
-曾有邪教称1999年12月31日是世界末日。当然该谣言已经不攻自破。
-还有人称今后的某个世纪末的12月31日，如果是星期一则会….
-有趣的是，任何一
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-06
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E7%9C%9F%E9%A2%98%E8%AE%AD%E7%BB%83/" class="post-category">
-                                    真题训练
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/C-%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%9C%9F%E9%A2%98%E8%AE%AD%E7%BB%83/">
-                        <span class="chip bg-color">-C++ -蓝桥杯真题训练</span>
+                    <a href="/tags/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83/">
+                        <span class="chip bg-color">算法训练</span>
                     </a>
                     
                 </div>
@@ -1113,7 +1146,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">12.9k</span>&nbsp;字
+                class="white-color">14k</span>&nbsp;字
             
             
             

@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="算法 位运算, KQ的博客">
+    <meta name="keywords" content="算法学习 寒假每日一题1.11, KQ的博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>算法 位运算 | KQ的博客</title>
+    <title>算法学习 寒假每日一题1.11 | KQ的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -308,12 +308,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">算法 位运算</h1>
+                    <h1 class="description center-align post-title">算法学习 寒假每日一题1.11</h1>
                 </div>
             </div>
         </div>
@@ -430,12 +430,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/">
-                                <span class="chip bg-color">基础算法</span>
-                            </a>
-                        
                             <a href="/tags/C/">
                                 <span class="chip bg-color">C++</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83/">
+                                <span class="chip bg-color">算法训练</span>
                             </a>
                         
                     </div>
@@ -446,8 +446,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/" class="post-category">
-                                基础算法学习
+                            <a href="/categories/%E5%AF%92%E5%81%87%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" class="post-category">
+                                寒假每日一题
                             </a>
                         
                     </div>
@@ -459,7 +459,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-09-08
+                    2021-01-13
                 </div>
                 
 
@@ -468,7 +468,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    215
+                    288
                 </div>
                 
 
@@ -485,42 +485,46 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>位运算在某些特定的题目里面会有涉及，可以在较快的时间内求解一些特殊的问题，比如求1或者0，在二进制里面有非常特殊的运用。</p>
-<h1 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h1><h2 id="一、二进制中1的个数"><a href="#一、二进制中1的个数" class="headerlink" title="一、二进制中1的个数"></a>一、二进制中1的个数</h2><p><img src="https://img-blog.csdnimg.cn/20200908230522849.png" alt="二进制中1的个数"></p>
+                <h1 id="1-11-蛇形矩阵"><a href="#1-11-蛇形矩阵" class="headerlink" title="1.11 蛇形矩阵"></a>1.11 蛇形矩阵</h1><p>题目：</p>
+<p><img src="https://img-blog.csdnimg.cn/20210113121303169.png" alt="蛇形矩阵"></p>
+<p>题解：</p>
 <pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;iostream&gt;
 
 using namespace std;
+const int N &#x3D; 110;
+int q[N][N];
+int n, m;
 
-const int N &#x3D; 100010;
-
-int a[N];
 int main()
 &#123;
-    int m;
-    cin &gt;&gt; m;
-    while(m --)
+    cin &gt;&gt; n &gt;&gt; m;
+    int dx[4] &#x3D; &#123;-1, 0, 1, 0&#125;, dy[4] &#x3D; &#123;0, 1, 0, -1&#125;;
+    int x &#x3D; 1, y &#x3D; 1, d &#x3D; 1;
+    for(int i &#x3D; 1; i &lt;&#x3D; n * m; i ++ )
     &#123;
-        int x, sum &#x3D; 0;
-        cin &gt;&gt; x;
+        q[x][y] &#x3D; i;
+        int a &#x3D; x + dx[d], b &#x3D; dy[d] + y;
+        if(a &lt;&#x3D; 0 || a &gt; n || b &lt;&#x3D; 0 || b &gt; m || q[a][b])
+        &#123;
+            d &#x3D; (d + 1) % 4;
+            a &#x3D; x + dx[d], b &#x3D; dy[d] + y;
+        &#125;
+        x &#x3D; a, y &#x3D; b;
+    &#125;
 
-        for(int i &#x3D; x; i; i -&#x3D; i &amp; -i)  sum ++;
 
-        cout &lt;&lt; sum &lt;&lt; &#39; &#39;;
+    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ )
+    &#123;
+        for(int j &#x3D; 1; j &lt;&#x3D; m; j ++ )
+        &#123;
+            cout &lt;&lt; q[i][j] &lt;&lt; &#39; &#39;;
+        &#125;
+        cout &lt;&lt; endl;
     &#125;
     return 0;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>lobit函数的运用是位运算里面最本质的地方</p>
-<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">int lowbit(int x) 
-&#123;
-    return x &amp; (-x);
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>主要把lobit函数的本质弄清楚，位运算的题目就可以理解。</p>
-<hr>
-<p>由于本主题题目较少，有水文章的嫌疑</p>
-<p>但是没办法，我确实在水文章，后面几天多更新一点。</p>
-<hr>
+<p>本题有一个特殊的思路，就是当需要依次查找上下左右四个点是否存在的时候，可以几个变量函数，来依次控制移动的方向，本题中的dx， dy的作用就是这样。本题依次对右下左上的点进行判断是否可插入性，然后用一个二维数组来存放结果。最后便利输出结果即可。</p>
 
             </div>
             <hr/>
@@ -546,7 +550,7 @@ int main()
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://wustuzi.github.io/2020/09/08/%E7%AE%97%E6%B3%95-%E4%BD%8D%E8%BF%90%E7%AE%97/">http://wustuzi.github.io/2020/09/08/%E7%AE%97%E6%B3%95-%E4%BD%8D%E8%BF%90%E7%AE%97/</a>
+                    <a href="http://wustuzi.github.io/2021/01/13/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E5%AF%92%E5%81%87%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%981-11/">http://wustuzi.github.io/2021/01/13/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E5%AF%92%E5%81%87%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%981-11/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -584,12 +588,12 @@ int main()
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/">
-                                    <span class="chip bg-color">基础算法</span>
-                                </a>
-                            
                                 <a href="/tags/C/">
                                     <span class="chip bg-color">C++</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83/">
+                                    <span class="chip bg-color">算法训练</span>
                                 </a>
                             
                         </div>
@@ -760,7 +764,7 @@ int main()
         repo: 'wustuzi.github.io',
         owner: 'wustuzi',
         admin: "wustuzi",
-        id: '2020-09-08T23-02-33',
+        id: '2021-01-13T12-06-02',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -788,35 +792,39 @@ int main()
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/09/24/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83-%E7%A6%BB%E6%95%A3%E5%8C%96%E4%B8%8E%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6/">
+                <a href="/2021/01/14/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E5%AF%92%E5%81%87%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%981-12/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="算法训练 离散化与区间合并">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="算法学习 寒假每日一题1.12">
                         
-                        <span class="card-title">算法训练 离散化与区间合并</span>
+                        <span class="card-title">算法学习 寒假每日一题1.12</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            离散化与区间合并属于一系列特殊的哈希方式，主要作用是将一个很长的数组对应到相邻的位置上面 区间合并可以快速解决一些特定的问题。
-火烧赤壁
-#include&lt;iostream&gt;
-#include&lt;algorithm&gt;
+                            1.12 红与黑题目：
 
+题解：
+①BFS宽搜解法(队列)
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#include &lt;queue&gt;
+
+#define x fir
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-09-24
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-01-14
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/" class="post-category">
-                                    基础算法学习
+                            <a href="/categories/%E5%AF%92%E5%81%87%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" class="post-category">
+                                    寒假每日一题
                                 </a>
                             
                             
@@ -845,33 +853,40 @@ int main()
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/09/07/%E7%AE%97%E6%B3%95-%E5%8F%8C%E6%8C%87%E9%92%88%E7%AE%97%E6%B3%95/">
+                <a href="/2021/01/13/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E5%AF%92%E5%81%87%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%981-10/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="算法 双指针算法">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="算法学习 寒假每日一题1.10">
                         
-                        <span class="card-title">算法 双指针算法</span>
+                        <span class="card-title">算法学习 寒假每日一题1.10</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            双指针算法在我们平时的还很多例题里面都有涉及，比如归并排序里面，两个指针指向每一半的开头部分，通过对比大小向后移动。又比如在模拟栈里面，通过两个指针模拟栈的栈顶和栈底元素。也是属于一种双指针算法。
-双指针算法一.最长连续不重复子序列
-#in
+                            1.10日 数字三角形题目：
+
+题解：
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+
+using namespace std;
+
+const int N &#x3D; 510;
+
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-07
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-01-13
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/" class="post-category">
-                                    基础算法学习
+                            <a href="/categories/%E5%AF%92%E5%81%87%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" class="post-category">
+                                    寒假每日一题
                                 </a>
                             
                             
@@ -881,12 +896,12 @@ int main()
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/">
-                        <span class="chip bg-color">基础算法</span>
-                    </a>
-                    
                     <a href="/tags/C/">
                         <span class="chip bg-color">C++</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83/">
+                        <span class="chip bg-color">算法训练</span>
                     </a>
                     
                 </div>
