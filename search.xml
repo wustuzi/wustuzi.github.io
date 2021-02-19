@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>算法学习 好题收集</title>
+      <link href="/2021/02/19/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E5%A5%BD%E9%A2%98%E6%94%B6%E9%9B%86/"/>
+      <url>/2021/02/19/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E5%A5%BD%E9%A2%98%E6%94%B6%E9%9B%86/</url>
+      
+        <content type="html"><![CDATA[<p>这个题目是一种特殊的DP题目， 可以给我们开拓DP的一些思路和解题方法</p><h1 id="鸣人的影分身"><a href="#鸣人的影分身" class="headerlink" title="鸣人的影分身"></a>鸣人的影分身</h1><p><img src="https://img-blog.csdnimg.cn/20210219173856427.png" alt="鸣人的影分身"></p><p>题解：</p><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;using namespace std;const int N &#x3D; 20;int f[N][N];int t, n, m;int main()&#123;    cin &gt;&gt; t;    while(t -- )    &#123;        cin &gt;&gt; m &gt;&gt; n;        f[0][0] &#x3D; 1;        for(int i &#x3D; 0; i &lt;&#x3D; m; i ++ )        &#123;            for(int j &#x3D; 1; j &lt;&#x3D; n; j ++ )            &#123;                f[i][j] &#x3D; f[i][j - 1];                if(i &gt;&#x3D; j)  f[i][j] +&#x3D; f[i - j][j];            &#125;        &#125;        cout &lt;&lt; f[m][n] &lt;&lt; endl;    &#125;    return 0;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>我们使用DP的时候， 先需要注意每一个的属性主要是什么， 然后通过状态转移以及每个属性的转移进行推算或者求最优。</p><p>这个题目比较难的是我们该如何进行状态的转变， 比较巧妙的地方是，我们可以将其转换成数列中最小的是0，以及最小的不是0，然后通过对最小的不是0部分的同减操作进行递推，是这个题目比较难的一个点。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 基础算法学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> 算法训练 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>算法学习 寒假每日一题1.12</title>
       <link href="/2021/01/14/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E5%AF%92%E5%81%87%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%981-12/"/>
       <url>/2021/01/14/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E5%AF%92%E5%81%87%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%981-12/</url>
