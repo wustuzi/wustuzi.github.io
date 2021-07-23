@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>算法 栈和队列</title>
+      <link href="/2021/07/23/%E7%AE%97%E6%B3%95-%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/"/>
+      <url>/2021/07/23/%E7%AE%97%E6%B3%95-%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/</url>
+      
+        <content type="html"><![CDATA[<p>​        这里主要是介绍手写栈和队列，也就是使用队列去写，并没有使用C++ STL自带的栈和队列的函数进行代码的编写，使用数列来进行。这里主要使用数列进行栈和队列。</p><hr><h1 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h1><p>​        对于栈这一种数据结构，我们所了解的主要是栈的先进后出这一概念，也就是栈只有一端可以插入或者删除数据，那一头就是栈顶。下面介绍最主要的结构。</p><h3 id="模拟栈"><a href="#模拟栈" class="headerlink" title="模拟栈"></a>模拟栈</h3><p><img src="https://img-blog.csdnimg.cn/f4cb2be50f8746cb896be0d4c24dd999.png" alt="模拟栈"></p><p>可以知道栈 有栈顶栈底两个部分组成，所以我们需要一个指针指向栈顶，当插入数据时，我们需要将栈顶指针向上进行平移，当弹出数据时，我们也需要将栈顶指针向下移动。</p><p>题解：</p><pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;iostream&gt;using namespace std;const int N &#x3D; 100010;int m, cnt &#x3D; -1;int a[N];int main()&#123;    cin &gt;&gt; m;    while(m --)    &#123;        string op;        cin &gt;&gt; op;        if(op &#x3D;&#x3D; &quot;push&quot;)        &#123;            int x;            cin &gt;&gt; x;            a[++ cnt] &#x3D; x;        &#125;        else if(op &#x3D;&#x3D; &quot;pop&quot;)        &#123;            cnt --;        &#125;        else if(op &#x3D;&#x3D; &quot;query&quot;)        &#123;            cout &lt;&lt; a[cnt] &lt;&lt; endl;;        &#125;        else        &#123;            if(cnt &#x3D;&#x3D; -1)            &#123;                cout &lt;&lt; &quot;Yes&quot; &lt;&lt; endl;            &#125;            else    cout &lt;&lt; &quot;NO&quot; &lt;&lt; endl;        &#125;    &#125;    return 0;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>这个就是模拟栈的最基本的一个形式，可以进行栈的插入，删除，查询栈顶元素，查询栈是否为空的操作。</p><p>[原题链接](<a href="https://www.acwing.com/problem/content/830/">828. 模拟栈 - AcWing题库</a>)</p><p>+++</p><h1 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h1><p>​        对于队列数据结构，主要是指，先进先出，后进后出，这个主要体验到的是队列有对头和队尾两种元素，所以我们需要定义队头指针以及队尾指针两种元素，判断队列是否为空的判断条件是队头指针和队尾指针的位置关系。</p><h3 id="模拟队列"><a href="#模拟队列" class="headerlink" title="模拟队列"></a>模拟队列</h3><p><img src="https://img-blog.csdnimg.cn/af813a9e1a894c40a6838e0450aead5c.png" alt="模拟队列"></p><p>队列有队头队尾两个部分组成，所以我们需要一个指针指向对头，一个对头指向队尾，当插入数据时，我们需要将对头指针向后进行平移，当弹出数据时，我们也需要将对尾顶指针向下移动。</p><pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;iostream&gt;using namespace std;const int N &#x3D; 100010;int q[N], hh &#x3D; 0, tt &#x3D; 0;int main()&#123;    int n;    cin &gt;&gt; n;    for(int i &#x3D; 0; i &lt; n; i ++)    &#123;        string op;        int x;        cin &gt;&gt; op;        if(op &#x3D;&#x3D; &quot;push&quot;)        &#123;            cin &gt;&gt; x;            q[tt] &#x3D; x;            tt ++;        &#125;        else if(op &#x3D;&#x3D; &quot;pop&quot;)        &#123;            if(tt &gt;&#x3D; 0) hh ++;        &#125;        else if(op &#x3D;&#x3D; &quot;empty&quot;)          &#123;            if(tt &#x3D;&#x3D; hh)    cout &lt;&lt; &quot;YES&quot; &lt;&lt; endl;            else    cout &lt;&lt; &quot;NO&quot; &lt;&lt;endl;        &#125;        else    cout &lt;&lt; q[hh] &lt;&lt; endl;    &#125;    return 0;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>[原题链接](<a href="https://www.acwing.com/problem/content/831/">829. 模拟队列 - AcWing题库</a>)</p><hr><p>其实对于队列来说，栈顶指针会一直向后退，会导致空间的浪费，比如当我退出到第五个元素时，前五个位置都会空出来，后面也很难进行利用，所以对于队列有一种优化方式，也就是循环队列的方式进行优化。</p><h3 id="循环队列"><a href="#循环队列" class="headerlink" title="循环队列"></a>循环队列</h3><p>循环队列的主要形式就是假设队列是一个圆，队列的下标就是通过一个Q.front和一个Q.back来进行判断，如果两者相等，即为空队列，否则，每次当某一个指针移动时，都使用mod上一个数的方法，这样来进行判断。</p><hr>]]></content>
+      
+      
+      <categories>
+          
+          <category> 数据结构 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 基础算法 </tag>
+            
+            <tag> C++ </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>算法学习 好题收集</title>
       <link href="/2021/02/19/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E5%A5%BD%E9%A2%98%E6%94%B6%E9%9B%86/"/>
       <url>/2021/02/19/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E5%A5%BD%E9%A2%98%E6%94%B6%E9%9B%86/</url>
